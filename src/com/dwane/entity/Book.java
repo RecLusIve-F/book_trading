@@ -10,9 +10,7 @@ public class Book {
     private String name;
     private String author;
 
-    public Book(){
 
-    }
 
     public void setId(int id) {
         this.id = id;
