@@ -10,6 +10,6 @@ public interface UserService {
     //注册校验，返回相应提示信息
     String checkForUsername (String username);
     String checkForPassword (String password,String rePassword);
-    boolean addUser(String username,String password);//添加成功与否
+    void addUser(String username,String password);//添加成功与否
 
 }
