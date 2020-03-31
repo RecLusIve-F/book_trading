@@ -29,7 +29,6 @@ public class DButils {
             e.printStackTrace();
         }
     }
-
     /**
      * 查询
      * @param sql

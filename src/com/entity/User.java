@@ -7,6 +7,7 @@ package com.entity;
 public class User {
     private String username;//用户名
     private String password;//密码
+    private String telephone;
     private String sex;
     private String address;
 
@@ -48,4 +49,13 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
 }

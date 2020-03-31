@@ -6,9 +6,12 @@ package com.entity;
  */
 public class Book {
 
-    private int id;
+    private int id;//编号
     private String name;
     private String author;
+    private String image;//图片
+    private String category;//类别
+
 
 
 
@@ -35,4 +38,5 @@ public class Book {
     public String getAuthor() {
         return author;
     }
+
 }
