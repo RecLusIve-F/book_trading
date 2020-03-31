@@ -1,6 +1,6 @@
-package com.dwane.dao;
+package com.dao;
 
-import com.dwane.entity.Book;
+import com.entity.Book;
 
 import java.util.List;
 

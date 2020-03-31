@@ -1,9 +1,9 @@
-package com.dwane.service.impl;
+package com.service.impl;
 
-import com.dwane.service.BookService;
-import com.dwane.dao.BookDao;
-import com.dwane.dao.impl.BookDaoImpl;
-import com.dwane.entity.Book;
+import com.dao.BookDao;
+import com.dao.impl.BookDaoImpl;
+import com.service.BookService;
+import com.entity.Book;
 
 import java.util.ArrayList;
 

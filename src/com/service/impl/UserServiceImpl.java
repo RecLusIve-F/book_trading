@@ -1,9 +1,9 @@
-package com.dwane.service.impl;
+package com.service.impl;
 
-import com.dwane.dao.UserDao;
-import com.dwane.dao.impl.UserDaoImpl;
-import com.dwane.entity.User;
-import com.dwane.service.UserService;
+import com.dao.UserDao;
+import com.dao.impl.UserDaoImpl;
+import com.entity.User;
+import com.service.UserService;
 
 
 /**

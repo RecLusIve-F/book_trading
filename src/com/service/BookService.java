@@ -1,6 +1,6 @@
-package com.dwane.service;
+package com.service;
 
-import com.dwane.entity.Book;
+import com.entity.Book;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,4 @@
-package com.dwane.servlet;
-
-import com.dwane.entity.User;
-import com.dwane.service.impl.UserServiceImpl;
+package com.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

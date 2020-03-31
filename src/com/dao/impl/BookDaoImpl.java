@@ -1,8 +1,8 @@
-package com.dwane.dao.impl;
+package com.dao.impl;
 
-import com.dwane.dao.BookDao;
-import com.dwane.entity.Book;
-import com.dwane.utils.DButils;
+import com.dao.BookDao;
+import com.entity.Book;
+import com.utils.DButils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

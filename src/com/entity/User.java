@@ -1,4 +1,4 @@
-package com.dwane.entity;
+package com.entity;
 
 /**
  * @author dwaneZhou

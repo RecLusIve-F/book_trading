@@ -1,4 +1,4 @@
-package com.dwane.utils;
+package com.utils;
 
 import java.sql.*;
 

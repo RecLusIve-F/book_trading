@@ -1,8 +1,8 @@
-package com.dwane.dao.impl;
+package com.dao.impl;
 
-import com.dwane.dao.UserDao;
-import com.dwane.entity.User;
-import com.dwane.utils.DButils;
+import com.dao.UserDao;
+import com.entity.User;
+import com.utils.DButils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
