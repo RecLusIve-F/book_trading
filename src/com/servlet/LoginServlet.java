@@ -37,27 +37,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("login_failure.jsp");//重定向
         }
 
-        /*
-        String userName = request.getParameter("username");
-        String password = request.getParameter("password");
-        if (userName != null && !userName.equals("")) {
-            UserServiceImpl userService = new UserServiceImpl();
-            User user = new User();
-            user.setUsername(userName);
-            user.setPassword(password);
-            if (userService.findUser(userName).getPassword().equals(password))
-                request.getSession().setAttribute("user", user);
-            response.sendRedirect("index.jsp");
 
-        } else {//不存在这个用户，给出提示，转回登录页面
-            String message = "用户名或密码错误";
-            request.getSession().setAttribute("msg", message);
-            response.sendRedirect("/Student/login.jsp");
-        }
-    }
-
-
- */
         /*
         测试
     public static void main(String[] args){
