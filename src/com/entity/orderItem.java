@@ -6,8 +6,8 @@ package com.entity;
  */
 public class orderItem {
 
-
-    private int number;//书本数量
+    private int id;
+    private int quantity;//数量
     private int bookId;
     private int orderId;//订单id
 }

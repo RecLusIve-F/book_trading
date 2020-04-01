@@ -7,10 +7,13 @@ package com.entity;
 public class Book {
 
     private int id;//编号
+    private double price;
     private String name;
     private String author;
     private String image;//图片
+    private String description;//描述
     private String category;//类别
+
 
 
 

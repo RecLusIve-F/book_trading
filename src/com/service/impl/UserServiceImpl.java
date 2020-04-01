@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
      * @param password
      */
     @Override
-    public void addUser(String username, String password) {
+    public boolean addUser(String username, String password) {
         try{
             user.setUsername(username);
             user.setPassword(password);
@@ -89,6 +89,7 @@ public class UserServiceImpl implements UserService {
         }catch (RuntimeException e){
             throw new RuntimeException("异常，添加用户失败"+e);
         }
+        return true;
 
     }
 
