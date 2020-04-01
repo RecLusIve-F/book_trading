@@ -12,7 +12,7 @@ public class Book {
     private int price;
     private int pagenum;
     private int cid;
-    private String Picture;
+    private String picture;
     private String summary;
 
     public void setId(int bid) {
@@ -40,7 +40,7 @@ public class Book {
     }
 
     public void setPicture(String Picture) {
-        this.Picture = Picture;
+        this.picture = Picture;
     }
 
     public void setSummary(String summary) {
@@ -72,7 +72,7 @@ public class Book {
     }
 
     public String getPicture() {
-        return Picture;
+        return picture;
 
     }
 

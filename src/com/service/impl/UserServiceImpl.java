@@ -1,7 +1,7 @@
 package com.service.impl;
 
 import com.dao.UserDao;
-import com.dao.impl.UserDaoImpl;
+import com.entity.User;
 import com.service.UserService;
 
 
@@ -12,7 +12,7 @@ import com.service.UserService;
 public class UserServiceImpl implements UserService {
 
     private User user;
-    UserDao userDao = new UserDaoImpl();//多态
+    UserDao userDao = new UserDao();
 
     /**
      * 用户名合法性检测
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
         try{
             user.setUsername(username);
             user.setPassword(password);
-            userDao.addUser(user);
+            userDao.insert(user);
         }catch (RuntimeException e){
             throw new RuntimeException("异常，添加用户失败"+e);
         }
