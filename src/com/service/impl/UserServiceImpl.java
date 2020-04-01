@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
     }
 
 /*
-    测试
+    //测试
 
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
@@ -125,11 +125,13 @@ public class UserServiceImpl implements UserService {
         String password = "12345jx";
         String rePassword = "12345jx";
         String usernameTest = userService.checkForUsername(username);
-        String passwordTest = userService.checkForPassword(password,rePassword);
+        String passwordTest = userService.checkForPassword(password);
         System.out.println(usernameTest);
         System.out.println(passwordTest);
         userService.addUser(username,password);
     }
 
+
  */
+
 }
