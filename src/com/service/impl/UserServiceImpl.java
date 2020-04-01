@@ -4,6 +4,9 @@ import com.dao.UserDao;
 import com.entity.User;
 import com.service.UserService;
 
+import java.sql.SQLException;
+import java.util.List;
+
 
 /**
  * @author dwaneZhou
@@ -11,7 +14,6 @@ import com.service.UserService;
  */
 public class UserServiceImpl implements UserService {
 
-    private User user;
     UserDao userDao = new UserDao();
 
     /**
@@ -35,9 +37,20 @@ public class UserServiceImpl implements UserService {
         if (username.matches(USERNAME)) {
             return "用户名包含非法字符";
         }
+        //判断用户是否已存在
+        List<User> users = userDao.findAll();
+        for (User  user:users){
+            if (username.equals(user.getUsername())) {
+                return "用户已存在";
+            }
+        }
+        /*
         if (username.equals(userDao.selectUserByName(username).getUsername())) {
             return "用户已存在";
         }
+
+         */
+
         return null;
     }
 
@@ -81,15 +94,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean addUser(String username, String password) {
-        try{
+            User user = new User();
             user.setUsername(username);
             user.setPassword(password);
             userDao.insert(user);
-        }catch (RuntimeException e){
-            throw new RuntimeException("异常，添加用户失败"+e);
-        }
-        return true;
-
+            return true;
     }
 
     /**
@@ -100,17 +109,20 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean login(String username, String password) {
-        user = userDao.selectUserByName(username);
-        if (user.getUsername().equals(username) && user.getPassword().equals(password)){
-            return true;
+        //user = userDao.selectUserByName(username);
+        List<User> users = userDao.findAll();
+        //获取指定姓名的用户
+        for (User  user:users){
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                return true;
+            }
         }
         return false;
     }
 
 
 
-    /*
-
+/*
     测试
 
     public static void main(String[] args) {
@@ -124,6 +136,14 @@ public class UserServiceImpl implements UserService {
         System.out.println(pwdTest);
     }
 
-     */
 
+ */
+/*
+    public static void main(String[] args) {
+        UserService userService = new UserServiceImpl();
+        userService.addUser("dd","123");
+    }
+
+
+ */
 }

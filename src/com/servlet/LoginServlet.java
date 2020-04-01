@@ -1,5 +1,6 @@
 package com.servlet;
 
+import com.entity.User;
 import com.service.UserService;
 import com.service.impl.UserServiceImpl;
 
@@ -36,16 +37,15 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("login_failure.jsp");//重定向
         }
 
-
-        /*
-        测试
+    }
+    /*
     public static void main(String[] args){
 
         UserService userService = new UserServiceImpl();
-        if (userService.login("dwane","123456")){
+        if (userService.login("dwane", "123456")) {
             System.out.println(true);
         }
-
-         */
     }
+
+     */
 }

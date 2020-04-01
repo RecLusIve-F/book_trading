@@ -14,7 +14,7 @@ public class BaseDao {
 		private String driver ="com.mysql.jdbc.Driver";
 		private String url="jdbc:mysql://localhost:3306/shop?serverTimezone=UTC";
 		private String name="root";
-		private String pwd="root";
+		private String pwd="jx265810";
 	      Connection conn=null;
 	      /***
 	       * 
@@ -106,6 +106,5 @@ public class BaseDao {
 					}
 			 return ps;
 		}
-	
 }
 

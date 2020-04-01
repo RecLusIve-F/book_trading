@@ -13,4 +13,6 @@ public interface UserService {
     String checkForPassword (String password,String rePassword);
     boolean addUser(String username,String password);//添加成功与否
 
+
+
 }

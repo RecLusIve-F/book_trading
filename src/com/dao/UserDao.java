@@ -39,14 +39,15 @@ public class UserDao extends BaseDao{
 		}
 		//��ѯ����
 		public List<User> findAll(){
-			String sql="SELECT * FROM `id`";
+			String sql="SELECT * FROM `user`";
 			return search(sql);
 		}
+
 		
 		//��ӷ���
 		public int insert(User t){
-			String str="INSERT INTO `id`(uid,username,password) VALUES(?,?,?)";
-			return executeUpdate(str, new Object[]{t.getUid(),t.getUsername(),t.getPassword()});
+			String str="INSERT INTO `user`(username,password) VALUES(?,?)";
+			return executeUpdate(str, new Object[]{t.getUsername(),t.getPassword()});
 		}
 		
 		//�޸ķ���
@@ -60,4 +61,15 @@ public class UserDao extends BaseDao{
 			String sql="DELETE FROM `Book` WHERE id=?";
 			return executeUpdate(sql, new Object[]{e.getUid()});
 		}
+/*
+	public static void main(String[] args) {
+		UserDao userDao = new UserDao();
+		List<User>  users = userDao.findAll();
+		for (User user:users){
+			System.out.println(user.getUsername()+user.getPassword());
+		}
+
+	}
+
+ */
 }
