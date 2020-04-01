@@ -1,7 +1,6 @@
 package com.dao.impl;
 
 import com.dao.UserDao;
-import com.entity.User;
 import com.utils.DButils;
 
 import java.sql.ResultSet;

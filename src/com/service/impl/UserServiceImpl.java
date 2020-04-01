@@ -2,7 +2,6 @@ package com.service.impl;
 
 import com.dao.UserDao;
 import com.dao.impl.UserDaoImpl;
-import com.entity.User;
 import com.service.UserService;
 
 

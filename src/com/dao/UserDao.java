@@ -1,7 +1,5 @@
 package com.dao;
 
-import com.entity.User;
-
 /**
  * 持久层，负责数据库的访问控制，并进行CRUD
  * @author dwaneZhou
