@@ -59,12 +59,11 @@ public class UserServiceImpl implements UserService {
      * 长度：6~16
      * 只能包含字母、数字、下划线、！
      * 至少包含两种类型符号
-     * @param password   密码
-     * @param rePassword 再次输入密码
+     * @param password
      * @return
      */
     @Override
-    public String checkForPassword(String password, String rePassword) {
+    public String checkForPassword(String password) {
         final int PASSWORD_MIN_SIZE = 6;//密码最小长度
         final int PASSWORD_MAX_SIZE = 16;//密码最大长度
         final String PASSWORD = ".*[^0-9a-zA-Z_].*";
@@ -80,9 +79,6 @@ public class UserServiceImpl implements UserService {
         }
         if (!password.matches(NUMBER_LETTER)){
             return "密码过于简单";
-        }
-        if (!password.equals(rePassword)) {
-            return "密码不一致";
         }
         return null;
     }
@@ -120,30 +116,20 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-
-
 /*
     测试
 
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
-        String username = "1234a_";
-        String password="123asdZ";
-        String rePassword="123asdZ";
-        String pwdTest = userService.checkForPassword(password,rePassword);
-        String nameTest = userService.checkForUsername(username);
-        System.out.println(nameTest);
-        System.out.println(pwdTest);
+        String username = "John";
+        String password = "12345jx";
+        String rePassword = "12345jx";
+        String usernameTest = userService.checkForUsername(username);
+        String passwordTest = userService.checkForPassword(password,rePassword);
+        System.out.println(usernameTest);
+        System.out.println(passwordTest);
+        userService.addUser(username,password);
     }
-
-
- */
-/*
-    public static void main(String[] args) {
-        UserService userService = new UserServiceImpl();
-        userService.addUser("dd","123");
-    }
-
 
  */
 }

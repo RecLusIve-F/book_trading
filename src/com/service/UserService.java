@@ -10,7 +10,7 @@ public interface UserService {
     boolean login(String username,String password);
     //注册校验，返回相应提示信息
     String checkForUsername (String username);
-    String checkForPassword (String password,String rePassword);
+    String checkForPassword (String password);
     boolean addUser(String username,String password);//添加成功与否
 
 
