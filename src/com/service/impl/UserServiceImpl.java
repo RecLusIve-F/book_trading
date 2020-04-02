@@ -29,13 +29,16 @@ public class UserServiceImpl implements UserService {
         final int USERNAME_MAX_SIZE = 8;//用户名最大长度
         final String USERNAME = ".*[^0-9a-zA-Z_].*";//正则表达式，用户名只能包含字母数字及下划线
         if (username.length() < USERNAME_MIN_SIZE) {
-            return "用户名长度不小于4";
+            //return "用户名长度不小于4";
+
         }
         if (username.length() > USERNAME_MAX_SIZE) {
-            return "用户名长度不大于8";
+            //return "用户名长度不大于8";
+
         }
         if (username.matches(USERNAME)) {
-            return "用户名包含非法字符";
+            //return "用户名包含非法字符";
+
         }
         //判断用户是否已存在
         List<User> users = userDao.findAll();
@@ -51,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
          */
 
-        return null;
+        return "success";
     }
 
     /**
@@ -80,7 +83,7 @@ public class UserServiceImpl implements UserService {
         if (!password.matches(NUMBER_LETTER)){
             return "密码过于简单";
         }
-        return null;
+        return "success";
     }
 
     /**
@@ -116,7 +119,7 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-/*
+
     //测试
 
     public static void main(String[] args) {
@@ -131,6 +134,6 @@ public class UserServiceImpl implements UserService {
         userService.addUser(username,password);
     }
 
- */
+
 
 }
