@@ -1,7 +1,6 @@
 package com.service.impl;
 
 import com.dao.BookDao;
-import com.dao.impl.BookDaoImpl;
 import com.service.BookService;
 import com.entity.Book;
 
@@ -13,7 +12,7 @@ import java.util.ArrayList;
  */
 public class BookServiceImpl implements BookService {
 
-    BookDao bookDao = new BookDaoImpl();
+    BookDao bookDao = new BookDao();
 
 
     @Override
@@ -28,7 +27,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void addBook(Book book) {
-        bookDao.addBook(book);
     }
 
     @Override

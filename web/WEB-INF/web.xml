@@ -3,14 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    <servlet>
-        <servlet-name>loginServlet</servlet-name>
-        <servlet-class>com.servlet.LoginServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>registerServlet</servlet-name>
-        <servlet-class>com.servlet.RegisterServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -19,6 +11,16 @@
         <servlet-name>registerServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
+=======
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/loginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registerServlet</servlet-name>
+        <url-pattern>/registerServlet</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>cors</filter-name>
         <filter-class>com.servlet.SimpleCORSFilter</filter-class>

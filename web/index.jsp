@@ -1,6 +1,4 @@
-<%@ page import="com.service.BookService" %>
-<%@ page import="com.service.impl.BookServiceImpl" %>
-<%@ page import="com.service.impl.UserServiceImpl" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Dwane
   Date: 2020/3/26

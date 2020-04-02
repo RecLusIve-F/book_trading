@@ -1,18 +1,20 @@
 package com.entity;
 
 /**
- * @author dwaneZhou
+ * 用户类
+ * @author Y
  * @create --\
  */
 public class User {
-    private String username;//用户名
-    private String password;//密码
-    private String sex;
-    private String address;
+    private int uid;
+    private String username;
+    private String password;
 
-    public User(){
 
+    public void setUid(int uid) {
+        this.uid = uid;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -21,31 +23,15 @@ public class User {
         this.password = password;
     }
 
+    public int getUid() {
+        return uid;
+    }
+
     public String getUsername() {
         return username;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public String toString(){
-        return "用户名："+username+",密码："+password;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 }

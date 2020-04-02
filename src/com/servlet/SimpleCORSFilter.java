@@ -1,3 +1,4 @@
+
 package com.servlet;
 
 import javax.servlet.*;
@@ -20,7 +21,6 @@ public class SimpleCORSFilter implements Filter{
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         chain.doFilter(req, res);
-
     }
 
     @Override
@@ -29,3 +29,4 @@ public class SimpleCORSFilter implements Filter{
     }
 
 }
+
