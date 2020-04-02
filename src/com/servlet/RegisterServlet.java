@@ -1,3 +1,4 @@
+
 package com.servlet;
 
 import com.google.gson.Gson;
@@ -60,5 +61,4 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 }
-
 

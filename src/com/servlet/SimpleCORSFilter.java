@@ -30,4 +30,3 @@ public class SimpleCORSFilter implements Filter{
 
 }
 
-
