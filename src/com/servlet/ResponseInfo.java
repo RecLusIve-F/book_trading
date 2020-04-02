@@ -1,6 +1,10 @@
 
 package com.servlet;
 
+/**
+ * @author RecLusIve_F
+ * @create --\
+ */
 public class ResponseInfo {
     private int status;
     private String responseMsg;

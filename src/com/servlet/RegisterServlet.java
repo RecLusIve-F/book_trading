@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author dwaneZhou
+ * @author RecLusIve_F
  * @create --\
  */
 public class RegisterServlet extends HttpServlet {

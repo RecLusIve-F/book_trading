@@ -12,7 +12,7 @@ import com.service.impl.UserServiceImpl;
 
 /**
  *表示层，负责与前端进行交互，如数据的交互和请求的响应
- * @author dwaneZhou
+ * @author RecLusIve_F
  * @create --\
  */
 public class LoginServlet extends HttpServlet {
