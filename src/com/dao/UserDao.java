@@ -39,7 +39,7 @@ public class UserDao extends BaseDao{
 		}
 		//��ѯ����
 		public List<User> findAll(){
-			String sql="SELECT * FROM `user`";
+			String sql="SELECT * FROM `User`";
 			return search(sql);
 		}
 
@@ -71,5 +71,7 @@ public class UserDao extends BaseDao{
 
 	}
 
+
  */
+
 }

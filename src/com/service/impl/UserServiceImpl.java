@@ -29,16 +29,13 @@ public class UserServiceImpl implements UserService {
         final int USERNAME_MAX_SIZE = 8;//用户名最大长度
         final String USERNAME = ".*[^0-9a-zA-Z_].*";//正则表达式，用户名只能包含字母数字及下划线
         if (username.length() < USERNAME_MIN_SIZE) {
-            //return "用户名长度不小于4";
-
+            return "用户名长度不小于4";
         }
         if (username.length() > USERNAME_MAX_SIZE) {
-            //return "用户名长度不大于8";
-
+            return "用户名长度不大于8";
         }
         if (username.matches(USERNAME)) {
-            //return "用户名包含非法字符";
-
+            return "用户名包含非法字符";
         }
         //判断用户是否已存在
         List<User> users = userDao.findAll();
@@ -47,13 +44,6 @@ public class UserServiceImpl implements UserService {
                 return "用户已存在";
             }
         }
-        /*
-        if (username.equals(userDao.selectUserByName(username).getUsername())) {
-            return "用户已存在";
-        }
-
-         */
-
         return "success";
     }
 
@@ -121,19 +111,21 @@ public class UserServiceImpl implements UserService {
 
 
     //测试
-
+/*
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
         String username = "John";
-        String password = "12345jx";
+        String password = "123k";
         String rePassword = "12345jx";
         String usernameTest = userService.checkForUsername(username);
         String passwordTest = userService.checkForPassword(password);
         System.out.println(usernameTest);
         System.out.println(passwordTest);
-        userService.addUser(username,password);
+        System.out.println(userService.addUser(username,password));
     }
 
+
+ */
 
 
 }
