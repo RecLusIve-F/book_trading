@@ -73,7 +73,6 @@ public class Book {
 
     public String getPicture() {
         return picture;
-
     }
 
     public String getSummary() {
