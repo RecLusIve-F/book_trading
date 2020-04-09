@@ -5,6 +5,7 @@ import com.service.BookService;
 import com.entity.Book;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author dwaneZhou
@@ -13,24 +14,29 @@ import java.util.ArrayList;
 public class BookServiceImpl implements BookService {
 
     BookDao bookDao = new BookDao();
-
+    List<Book> books = new ArrayList<>();
+    @Override
+    public List<Book> selAllBooks() {
+        books = bookDao.findAll();
+        return books;
+    }
 
     @Override
-    public ArrayList<Book> selAllBooks() {
+    public Book selectBook(String bookName) {
+        books = bookDao.findAll();
+        for (int i=0;i<books.size();i++){
+            Book currentBook = books.get(i);
+            if (currentBook.getName().equals(bookName)){
+                return currentBook;
+            }
+        }
         return null;
     }
 
     @Override
-    public Book selectBook(String book_name) {
-        return null;
+    public boolean addBook(Book book) {
+        bookDao.insert(book);
+        return true;
     }
 
-    @Override
-    public void addBook(Book book) {
-    }
-
-    @Override
-    public int deleteBook(String book_name) {
-        return 0;
-    }
 }
