@@ -1,16 +1,13 @@
 package com.dao;
 
-/**
- * @author Y
- */
-
-import com.entity.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.entity.User;
 
 
 public class UserDao extends BaseDao{
@@ -37,41 +34,27 @@ public class UserDao extends BaseDao{
 			}
 			return list;
 		}
-		//��ѯ����
+		//查询用户
 		public List<User> findAll(){
-			String sql="SELECT * FROM `User`";
+			String sql="SELECT * FROM `user`";
 			return search(sql);
 		}
-
 		
-		//��ӷ���
+		//插入用户
 		public int insert(User t){
 			String str="INSERT INTO `user`(username,password) VALUES(?,?)";
 			return executeUpdate(str, new Object[]{t.getUsername(),t.getPassword()});
 		}
 		
-		//�޸ķ���
+		//更新用户
 		public int update(User r){
-			String sql="UPDATE `Book` SET `username`=?,`author`=?,`Price`=?,`pageNum`=?, WHERE uid=?";
+			String sql="UPDATE `users` SET `username`=?,`password`=?, WHERE uid=?";
 			return executeUpdate(sql, new Object[]{r.getUsername(),r.getPassword(),r.getUid()});
 		}
 		
-		//ɾ������
+		//删除用户
 		public int delete(User e){
-			String sql="DELETE FROM `Book` WHERE id=?";
+			String sql="DELETE FROM `users` WHERE id=?";
 			return executeUpdate(sql, new Object[]{e.getUid()});
 		}
-/*
-	public static void main(String[] args) {
-		UserDao userDao = new UserDao();
-		List<User>  users = userDao.findAll();
-		for (User user:users){
-			System.out.println(user.getUsername()+user.getPassword());
-		}
-
-	}
-
-
- */
-
 }

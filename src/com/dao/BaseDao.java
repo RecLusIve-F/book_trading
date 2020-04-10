@@ -1,14 +1,14 @@
 package com.dao;
 
-/**
- * @author Y
- */
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class BaseDao {
 	/***
-	 * 数据库连接类
-	 * @author Yang JunLong
+	 *
 	 *
 	 */
 		private String driver ="com.mysql.jdbc.Driver";
@@ -16,22 +16,8 @@ public class BaseDao {
 		private String name="root";
 		private String pwd="jx265810";
 	      Connection conn=null;
-	      /***
-	       * 
-	       * @return ������
-	       */
-	    /*  public Connection getconn(){
-	  		Connection conn=null;
-	  		Context ctx;
-	  		try {
-	  			ctx = new InitialContext();
-	  			DataSource ds=(DataSource)ctx.lookup("java:comp/env/jdbc/news");	
-	  	    	conn=ds.getConnection();
-	  		}catch (Exception e) {
-	  			e.printStackTrace();
-	  		}
-	  		return conn;
-	  	}     */
+	
+
 		protected  Connection getconn(){
 			conn=null;	
 			try {
@@ -47,10 +33,7 @@ public class BaseDao {
 			return conn;
 		}
 		
-		/****
-		 * 
-		 * @param �ر����ݿ�����
-		 */
+	
 		protected void closeAll(Connection conn ,PreparedStatement ps,ResultSet rs){		
 			if(rs!=null)
 				try {
@@ -65,12 +48,7 @@ public class BaseDao {
 					e.printStackTrace();
 				}				
 		}
-		/***
-		 * 
-		 * @param ��ɾ�ķ���
-		 * @param ���� ����Ϊ SQL��� �� ��������
-		 * @return ������Ӱ������
-		 */
+		
 		public int executeUpdate(String sql ,Object []ob){
 			conn=getconn();
 			PreparedStatement ps=null;
@@ -87,9 +65,7 @@ public class BaseDao {
 			}
 		
 		}	
-		/***
-		 * ��ѯ����
-		 */
+	
 		protected PreparedStatement prepareStatement(Connection conn,String sql,Object []ob){		
 			PreparedStatement ps=null;
 					try {
@@ -106,5 +82,6 @@ public class BaseDao {
 					}
 			 return ps;
 		}
+	
 }
 

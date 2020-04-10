@@ -4,7 +4,6 @@ import com.dao.UserDao;
 import com.entity.User;
 import com.service.UserService;
 
-import java.sql.SQLException;
 import java.util.List;
 
 
@@ -111,7 +110,7 @@ public class UserServiceImpl implements UserService {
 
 
     //测试
-/*
+
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
         String username = "John";
@@ -125,7 +124,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
- */
+
 
 
 }
