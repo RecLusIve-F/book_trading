@@ -1,11 +1,13 @@
 package com.entity;
 
-public class Order {
+import java.sql.Date;
+
+public class Orders {
 	
 	
 	private int oid;
-	private String orderTime;
-	private int total;
+	private Date orderTime;
+	private double total;
 	private int status;
 	private String address;
 	private int uid;
@@ -15,12 +17,12 @@ public class Order {
         this.oid =  oid;
     }
 	
-	public void setOrderTime(String orderTime) {
+	public void setOrderTime(Date orderTime) {
         this.orderTime =  orderTime;
         
     }
 	
-	public void setTotal(int total) {
+	public void setTotal(double total) {
         this.total =  total;
     }
 	
@@ -40,11 +42,11 @@ public class Order {
         return oid;
     }
 	
-	public String getOrderTime() {
+	public Date getOrderTime() {
 	    return orderTime;
 	}
 	
-	public int getTotal() {
+	public double getTotal() {
         return total;
     }
 

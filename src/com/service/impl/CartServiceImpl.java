@@ -19,17 +19,16 @@ public class CartServiceImpl implements CartService {
 
     /**
      * 插入购物项
-     * @param uid 用户id
-     * @param bookName 书名
+     * @param uid
+     * @param bid
      * @return
      */
     @Override
-    public boolean addCart(int uid, String bookName) {
-        Book book = bookDao.findOne(bookName,1).get(0);
+    public boolean addCart(int uid, int bid) {
+        Book book = bookDao.findBook(bid).get(0);
         Cart cart = new Cart();
         cart.setBid(book.getBid());
-        cart.setBname(bookName);
-        cart.setQuantity(1);
+        cart.setBname(book.getBname());
         cart.setPrice(book.getPrice());
         cart.setTotal(book.getPrice());
         cart.setPicture(book.getPicture());
@@ -45,12 +44,20 @@ public class CartServiceImpl implements CartService {
         return true;
     }
 
+    /**
+     * 更新购物项
+     * @param uid
+     * @param bid
+     * @param quantity
+     * @return
+     */
+
     @Override
-    public boolean updateCart(int uid, String bookName, int quantity) {
-        Book book = bookDao.findOne(bookName,1).get(0);
-        int bid = book.getBid();
+    public boolean updateCart(int uid, int bid, int quantity) {
+        List<Book> books = bookDao.findBook(bid);
+        Book book = books.get(0);
         double price = book.getPrice();
-        double total =price*quantity;
+        double total =price*quantity;//单项总价格
         cartDao.update(quantity,total,bid,uid);
         return true;
     }

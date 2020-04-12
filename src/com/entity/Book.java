@@ -1,15 +1,13 @@
 package com.entity;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
-import java.util.Date;
+import java.sql.Date;
 
 public class Book {
 
     private int bid;
     private String bname;
     private String author;
-    private int price;
+    private double price;
     private int pagenum;
     private int cid;
     private String picture;
@@ -57,7 +55,7 @@ public class Book {
         this.author = author;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -90,7 +88,7 @@ public class Book {
         return author;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

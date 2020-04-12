@@ -5,10 +5,10 @@ public class Orderitem {
 	
 	private int orderitemid;
 	private int quantity;
-	private int subtotal;
+	private double subtotal;
 	private int bid;
 	private String bname;
-	private int price;
+	private double price;
 	private int oid;
 	
 	public void setOrderitemid(int orderitemid) {
@@ -19,7 +19,7 @@ public class Orderitem {
         this.quantity =  quantity;
     }
 	
-	public void setSubtotal(int subtotal) {
+	public void setSubtotal(double subtotal) {
         this.subtotal =  subtotal;
     }
 	
@@ -31,7 +31,7 @@ public class Orderitem {
         this.bname =  bname;
     }
 	
-	public void setPrice(int price) {
+	public void setPrice(double price) {
         this.price =  price;
     }
 	
@@ -47,7 +47,7 @@ public class Orderitem {
 	    return quantity;
 	}
 	
-	public int getSubtotal() {
+	public double getSubtotal() {
 	    return subtotal;
 	}
 	
@@ -59,7 +59,7 @@ public class Orderitem {
 	    return bname;
 	}
 	
-	public int getPrice() {
+	public double getPrice() {
 	    return price;
 	}
 	

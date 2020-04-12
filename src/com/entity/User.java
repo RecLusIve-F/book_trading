@@ -6,6 +6,9 @@ public class User {
 	   private int uid;
        private String username; 
        private String password;
+       private String address;
+       private String telephone;
+       
        
        
        public void setUid(int uid) {
@@ -20,6 +23,14 @@ public class User {
 	        this.password =  password;
 	    }
 	    
+	    public void setAddress(String address) {
+	        this.address = address;
+	    }
+	    
+	    public void setTelephone(String telephone) {
+	        this.telephone = telephone;
+	    }
+	    
 	    public int getUid() {
 	        return uid;
 	    }
@@ -30,5 +41,13 @@ public class User {
 
 	    public  String getPassword() {
 	        return password;
+	    }
+	    
+	    public String getAddress() {
+	        return address;
+	    }
+	    
+	    public String getTelephone() {
+	        return telephone;
 	    }
 }

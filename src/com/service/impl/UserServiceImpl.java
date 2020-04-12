@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
 
 
     //测试
-
+/*
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
         String username = "John";
@@ -123,8 +123,5 @@ public class UserServiceImpl implements UserService {
         System.out.println(userService.addUser(username,password));
     }
 
-
-
-
-
+ */
 }
