@@ -6,10 +6,8 @@ import com.dao.OrderitemDao;
 import com.entity.Book;
 import com.entity.Cart;
 import com.entity.Orderitem;
-import com.service.BookService;
 import com.service.OrderItemService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,7 +55,7 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     @Override
     public List<Orderitem> selOrderItem(int oid) {
-        List<Orderitem> orderitems =orderitemDao.findAll(oid);
+        List<Orderitem> orderitems =orderitemDao.findOrderItem(oid);
         return orderitems;
     }
 

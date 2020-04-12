@@ -4,10 +4,8 @@ import com.dao.BookDao;
 import com.service.BookService;
 import com.entity.Book;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Random;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,7 +13,9 @@ import java.util.List;
  * @create --\
  */
 public class BookServiceImpl implements BookService {
-
+    int i = 0;
+    int j = 0;
+    int k = 0;
     BookDao bookDao = new BookDao();
     List<Book> books = new ArrayList<>();
 
@@ -51,6 +51,7 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public boolean isNew(Book book) {
+        /*
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//格式化
         try {
             //格式化日期
@@ -68,24 +69,64 @@ public class BookServiceImpl implements BookService {
             e.printStackTrace();
         }
         return false;
-    }
 
-    @Override
-    public boolean isPopular(Book book) {
+         */
+        boolean flag;
+        Random random = new Random();
+        //随机10本书
+        while (i<10){
+            flag = random.nextBoolean();
+            i++;
+            return flag;
+        }
         return false;
     }
 
     /**
      * 是否特价
-     * 1为特价
-     *
+     * @param book
+     * @return
+     */
+    @Override
+    public boolean isPromo(Book book) {
+        //return false;
+
+        boolean flag;
+        Random random = new Random();
+        //随机10本书
+        while (k<10){
+            flag = random.nextBoolean();
+            k++;
+            return flag;
+        }
+        return false;
+    }
+
+    /**
+     * 是否畅销
+     * 3个用户及以上购买为畅销
      * @param book
      * @return
      */
     @Override
     public boolean isSpecial(Book book) {
-        if (book.getSpecial().equals("1")) {
+        /*
+        OrderitemDao orderitemDao = new OrderitemDao();
+        List<Orderitem> orderitems = orderitemDao.findAll(book.getBid());
+        if (orderitems.size()>=3) {
             return true;
+        }
+        return false;
+
+         */
+
+        boolean flag;
+        Random random = new Random();
+        //随机10本书
+        while (j<10){
+            flag = random.nextBoolean();
+            j++;
+            return flag;
         }
         return false;
     }
