@@ -108,20 +108,29 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public boolean delUser(int uid) {
+        userDao.delete(uid);
+        return true;
+    }
+//测试
 
-    //测试
-/*
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
+        //插入
+
         String username = "John";
-        String password = "123k";
-        String rePassword = "12345jx";
+        String password = "123kkk";
+        String rePassword = "123kkk";
         String usernameTest = userService.checkForUsername(username);
         String passwordTest = userService.checkForPassword(password);
         System.out.println(usernameTest);
         System.out.println(passwordTest);
         System.out.println(userService.addUser(username,password));
+
+
+        //删除
+        //userService.delUser(3);
     }
 
- */
 }

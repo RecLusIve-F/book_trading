@@ -33,9 +33,12 @@ public class CategoryServlet extends HttpServlet {
 
         List<Book> bookList = bookService.selAllBooks();
         List<BookInfo> bookList_1 = new ArrayList<>();
+        /*
         for (Book i: bookList) {
             bookList_1.add(new BookInfo(i.getName(), i.getPicture(), i.getSummary(), bookService.isNew(i), bookService.isPopular(i), bookService.isSpecial(i)));
         }
+
+         */
         String result = gson.toJson(new ResponseInfo(200, bookList_1));
         resp.getWriter().write(result);
     }

@@ -13,14 +13,18 @@ public class Book {
     private String picture;
     private String summary;
     private Date createTime;
-    private String special;//是否特价
+    private int uid;
 
-    public String getSpecial() {
-        return special;
+    public int getUid() {
+        return uid;
     }
 
-    public void setSpecial(String special) {
-        this.special = special;
+    public void setBid(int bid) {
+        this.bid = bid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public void setBname(String bname) {

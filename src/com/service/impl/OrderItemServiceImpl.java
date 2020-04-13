@@ -31,20 +31,20 @@ public class OrderItemServiceImpl implements OrderItemService {
 
         List<Book> books;
         Book book;
-        //根据指定uid，bid，返回cart
+
         List<Cart> carts;
         Cart cart;
         //插入订单item
         for (int i = 0;i<bid.length;i++){
             //根据指定id返回Book
-            books = bookDao.findBook(bid[i]);
+            books = bookDao.findBook(bid[i]);//根据指定bid返回书本
             book = books.get(0);
-            carts= cartDao.findOne(uid,bid[i]);
+            carts= cartDao.findOne(uid,bid[i]);//根据指定uid，bid，返回cart
             cart = carts.get(0);
             Orderitem orderitem = new Orderitem();
             orderitem.setSubtotal(cart.getTotal());
             orderitem.setQuantity(cart.getQuantity());
-            orderitem.setBid(bid[i]);
+            orderitem.setBid(book.getBid());
             orderitem.setBname(book.getBname());
             orderitem.setPrice(book.getPrice());
             orderitem.setOid(oid);

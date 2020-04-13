@@ -12,6 +12,7 @@ public interface UserService {
     String checkForUsername (String username);
     String checkForPassword (String password);
     boolean addUser(String username,String password);//添加成功与否
+    boolean delUser(int uid);//删除用户
 
 
 

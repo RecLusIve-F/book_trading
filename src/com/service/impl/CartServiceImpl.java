@@ -39,7 +39,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public boolean delCart(int uid, int bid) {
-        cartDao.delete(uid,bid);
+        cartDao.delete(bid,uid);
         return true;
     }
 
@@ -65,6 +65,22 @@ public class CartServiceImpl implements CartService {
     public List<Cart> selCart(int uid) {
         List<Cart> carts =  cartDao.findAll(uid);
         return carts;
+    }
+
+    public static void main(String[] args) {
+        CartService cartService = new CartServiceImpl();
+        //插入
+        //cartService.addCart(4,11);
+        //cartService.updateCart(4,11,2);
+        /*
+        List<Cart> carts = cartService.selCart(4);
+        for (int i=0;i<carts.size();i++){
+            System.out.println(carts.get(i).getBname());
+        }
+
+         */
+        //cartService.delCart(4,11);
+
     }
 
 }
