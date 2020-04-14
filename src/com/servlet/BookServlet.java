@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 表示层，负责与前端进行交互，如数据的交互和请求的响应
  * 获取图书以及分类信息
  * @author dwaneZhou
  * @create --\

@@ -5,6 +5,7 @@ import com.entity.Book;
 import java.util.List;
 
 /**
+ * 业务逻辑层，通过持久层提供的接口获取数据，对数据进行逻辑处理
  * @author dwaneZhou
  * @create 26-3-2020\
  */

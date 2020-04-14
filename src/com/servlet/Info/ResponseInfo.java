@@ -4,9 +4,6 @@ import com.entity.Book;
 import com.entity.Category;
 import com.entity.Orderitem;
 import com.entity.Orders;
-import com.servlet.Info.BookInfo;
-import com.servlet.Info.CartInfo;
-import com.servlet.Info.UserInfo;
 
 import java.util.List;
 
