@@ -100,7 +100,7 @@ public class OrderServiceImpl implements OrderService {
          //修改订单状态
         //orderService.updateOrderStatus(14);
         //查询订单
-
+/*
         List<Orders> orders = orderService.selOrderInfo(4);
         for (int i = 0;i<orders.size();i++){
             int oid = orders.get(i).getOid();
@@ -108,9 +108,12 @@ public class OrderServiceImpl implements OrderService {
         }
 
 
+ */
+
 
         //删除订单
         //orderService.delOrder(4,14);
+
 
 
 

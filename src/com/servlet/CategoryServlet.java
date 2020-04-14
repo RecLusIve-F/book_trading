@@ -38,7 +38,7 @@ public class CategoryServlet extends HttpServlet {
 
         BookService bookService = new BookServiceImpl();
 
-        List<Book> books = bookService.selBookByName(category);//分类书本
+        List<Book> books = bookService.selBookByCategory(category);//分类书本
 
         boolean isNew;
         boolean isPromo;

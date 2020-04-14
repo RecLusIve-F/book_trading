@@ -40,8 +40,8 @@ public class BookServiceImpl implements BookService {
     }
     //查询某个用户的所有图书
     @Override
-    public List<Book> selBookByUser(int uid) {
-        books = bookDao.findBookbyUser(uid);
+    public List<Book> selBookByUsername(String username) {
+        books = bookDao.findBookbyUser(username);
         return books;
     }
     //按类别检索
@@ -149,7 +149,7 @@ public class BookServiceImpl implements BookService {
     }
 
     public static void main(String[] args) {
-        BookService bookService = new BookServiceImpl();
+        //BookService bookService = new BookServiceImpl();
         /*
         插入
         Book book = new Book();
@@ -166,7 +166,7 @@ public class BookServiceImpl implements BookService {
         //删除
         //System.out.println(bookService.delBook(10,5));
         //查找所有书
-        List<Book> books = bookService.selAllBooks();
+        //List<Book> books = bookService.selAllBooks();
         //模糊匹配检索
         //books = bookService.selBookByName("白");
         //分类检索

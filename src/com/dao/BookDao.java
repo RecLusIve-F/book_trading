@@ -85,9 +85,9 @@ public class BookDao extends BaseDao{
 		}
 
 		//返回用户发布所有图书
-		public List<Book> findBookbyUser(int uid) {
-			String sql=" select * from book where uid = ? )";
-			return search(sql,uid);
+		public List<Book> findBookbyUser(String username) {
+			String sql=" select * from book where username = ? )";
+			return search(sql,username);
 		}
 }
 		

@@ -114,10 +114,20 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    /**
+     * 更新用户信息
+     * @return
+     */
     @Override
-    public boolean updateUserInfo(String username,String address, String telephone, int uid) {
+    public String updateUserInfo(String username,String address, String telephone, int uid) {
+        List<User> users = userDao.findAll();
+        for (int i=0;i<users.size();i++){
+            if (users.get(i).getUsername().equals(username)){
+                return "更新失败，用户名已存在";//重名判断
+            }
+        }
         userDao.update(username,address,telephone,uid);
-        return true;
+        return "success";
     }
 
     @Override
@@ -141,9 +151,6 @@ public class UserServiceImpl implements UserService {
         System.out.println(passwordTest);
         System.out.println(userService.addUser(username,password));
          */
-
-        User user = userService.selUserByName("telemon");
-        System.out.println(user.getUid());
         //删除
         //userService.delUser(3);
     }

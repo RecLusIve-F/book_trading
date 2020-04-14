@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entity.Book;
 import com.entity.Cart;
 import com.entity.Orders;
 import com.entity.User;
@@ -68,6 +69,8 @@ public class LoginServlet extends HttpServlet {
             userInfo.setUid(user.getUid());
             userInfo.setTelephone(user.getTelephone());
             userInfo.setAddress(user.getAddress());
+            //用户发布图书信息
+            List<Book> books = bookService.selBookByUsername(username);
             //用户购物车信息
             List<Cart> carts = cartService.selCart(user.getUid());
             for (int i = 0; i < carts.size(); i++) {
@@ -79,7 +82,7 @@ public class LoginServlet extends HttpServlet {
             //用户订单信息
             List<Orders> orders = orderService.selOrderInfo(user.getUid());
 
-            String result = gson.toJson(new ResponseInfo(1, "登录成功", userInfo, cartInfos, orders));
+            String result = gson.toJson(new ResponseInfo(1, "登录成功", userInfo, cartInfos, orders,books));
             resp.getWriter().write(result);
         } else {
             String result = gson.toJson(new ResponseInfo(0, "用户名或密码错误"));

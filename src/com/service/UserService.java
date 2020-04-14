@@ -16,6 +16,6 @@ public interface UserService {
     boolean addUser(String username,String password);//添加成功与否
     User selUserByName(String username);
     boolean delUser(int uid);//删除用户
-    boolean updateUserInfo(String username,String address,String telephone,int uid);//更新用户信息
+    String updateUserInfo(String username,String address,String telephone,int uid);//更新用户信息
 
 }

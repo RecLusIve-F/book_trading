@@ -59,7 +59,6 @@ public class BookServlet extends HttpServlet {
             isPromo = bookService.isPromo(books.get(i).getBid());
             isSpecial = bookService.isSpecial(books.get(i).getBid());
             bookInfo = new BookInfo(books.get(i),isNew,isPromo,isSpecial);
-
             bookInfos.add(bookInfo);
         }
 

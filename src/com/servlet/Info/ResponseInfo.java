@@ -17,6 +17,7 @@ import java.util.List;
 public class ResponseInfo {
     private int status;
     private String responseMsg;
+    private List<Book> books;
     private List<BookInfo> bookInfos;
     private UserInfo userInfos;
     private List<CartInfo> cartInfos;
@@ -26,12 +27,13 @@ public class ResponseInfo {
 
 
     //Login_succeed
-    public ResponseInfo(int status, String responseMsg, UserInfo userInfos, List<CartInfo> cartInfos, List<Orders> orders) {
+    public ResponseInfo(int status, String responseMsg, UserInfo userInfos, List<CartInfo> cartInfos, List<Orders> orders,List<Book> books) {
         this.status = status;
         this.responseMsg = responseMsg;
         this.userInfos = userInfos;
         this.cartInfos = cartInfos;
         this.orders = orders;
+        this.books = books;
     }
 
     //Login_failure
