@@ -43,7 +43,7 @@ public class CategoryDao extends BaseDao{
 			String sql="UPDATE category SET `cname`=? WHERE cid=?";
 			return executeUpdate(sql, new Object[]{cname,cid});
 		}
-		
+
 		//删除
 		public int delete(int cid){
 			String sql="DELETE FROM category WHERE cid=?";
