@@ -1,10 +1,14 @@
 
-package com.servlet;
+package com.servlet.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * @author RecLusIve_F
+ * @create --\
+ */
 public class SimpleCORSFilter implements Filter{
 
     @Override

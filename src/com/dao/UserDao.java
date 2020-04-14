@@ -25,6 +25,8 @@ public class UserDao extends BaseDao{
 					wor.setUid(rs.getInt(1));
 					wor.setUsername(rs.getString(2));
 					wor.setPassword(rs.getString(3));
+					wor.setAddress(rs.getString(4));
+					wor.setTelephone(rs.getString(5));
 					list.add(wor);
 				}
 			} catch (SQLException e) {
@@ -36,25 +38,31 @@ public class UserDao extends BaseDao{
 		}
 		//查询用户
 		public List<User> findAll(){
-			String sql="SELECT * FROM `user`";
+			String sql="select * from user";
 			return search(sql);
+		}
+
+		//根据姓名查找用户
+		public List<User> findUser(String username){
+			String sql = "select * from user where username = ?";
+			return search(sql,username);
 		}
 		
 		//插入用户
 		public int insert(User t){
-			String str="INSERT INTO `user`(username,password) VALUES(?,?)";
-			return executeUpdate(str, new Object[]{t.getUsername(),t.getPassword()});
+			String str="insert into user (username,password,address,telephone) VALUES(?,?,?,?)";
+			return executeUpdate(str, new Object[]{t.getUsername(),t.getPassword(),t.getAddress(),t.getTelephone()});
 		}
 		
 		//更新用户
-		public int update(User r){
-			String sql="UPDATE `users` SET `username`=?,`password`=?, WHERE uid=?";
-			return executeUpdate(sql, new Object[]{r.getUsername(),r.getPassword(),r.getUid()});
+		public int update(String username,String address,String telephone,int uid){
+			String sql="update user set `username`=?,`address`=?,`telephone`=? WHERE uid=?";
+			return executeUpdate(sql, new Object[]{username,address,telephone,uid});
 		}
 		
 		//删除用户
-		public int delete(User e){
-			String sql="DELETE FROM `users` WHERE id=?";
-			return executeUpdate(sql, new Object[]{e.getUid()});
+		public int delete(int uid){
+			String sql="delete from user where uid=?";
+			return executeUpdate(sql, new Object[]{uid});
 		}
 }

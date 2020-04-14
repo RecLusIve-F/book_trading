@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author dwaneZhou
+ * 注册
+ * @author RecLusIve_F
  * @create --\
  */
 public class RegisterServlet extends HttpServlet {
@@ -37,13 +38,6 @@ public class RegisterServlet extends HttpServlet {
         // 实例化Gson
         Gson gson = new Gson();
 
-//        if (userService.login(username, password)) {
-//            String result = gson.toJson(new ResponseInfo(1, "登录成功"));
-//            resp.getWriter().write(result);
-//        } else {
-//            String result = gson.toJson(new ResponseInfo(0, "用户名或密码错误"));
-//            resp.getWriter().write(result);
-//        }
         if(usernameInfo.equals("success") && passwordInfo.equals("success")){
             if (userService.addUser(username, password)) {
                 String result = gson.toJson(new ResponseInfo(0, "注册成功"));

@@ -113,12 +113,25 @@ public class UserServiceImpl implements UserService {
         userDao.delete(uid);
         return true;
     }
-//测试
+
+    @Override
+    public boolean updateUserInfo(String username,String address, String telephone, int uid) {
+        userDao.update(username,address,telephone,uid);
+        return true;
+    }
+
+    @Override
+    public User selUserByName(String username) {
+        return userDao.findUser(username).get(0);
+    }
+
+    //测试
 
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
         //插入
 
+        /*
         String username = "John";
         String password = "123kkk";
         String rePassword = "123kkk";
@@ -127,8 +140,10 @@ public class UserServiceImpl implements UserService {
         System.out.println(usernameTest);
         System.out.println(passwordTest);
         System.out.println(userService.addUser(username,password));
+         */
 
-
+        User user = userService.selUserByName("telemon");
+        System.out.println(user.getUid());
         //删除
         //userService.delUser(3);
     }

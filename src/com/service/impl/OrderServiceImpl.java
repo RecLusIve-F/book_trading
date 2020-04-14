@@ -1,8 +1,10 @@
 package com.service.impl;
 
 import com.dao.OrdersDao;
+import com.entity.Cart;
 import com.entity.Orders;
 import com.entity.User;
+import com.service.CartService;
 import com.service.OrderItemService;
 import com.service.OrderService;
 
@@ -16,9 +18,11 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     OrderItemService orderItemService = new OrderItemServiceImpl();
     OrdersDao ordersDao = new OrdersDao();
+    CartService cartService = new CartServiceImpl();
 
     /**
      * 插入订单
+     * 暂未实现部分购物项生成订单
      * @param uid
      * @param address 收件地址，默认用户信息填的地址
      * @param total 订单总价
@@ -43,7 +47,13 @@ public class OrderServiceImpl implements OrderService {
             return false;
         }
         oid = result[1];
-        //插入订单项
+        //全部购物项生成订单
+        List<Cart> carts = cartService.selCart(uid);
+        int[] allBid=new int[carts.size()];//全部购物项
+        for (int i=0;i<carts.size();i++){
+            allBid[i]=carts.get(i).getBid();
+        }
+        bid = allBid;
         orderItemService.addItem(bid,oid,uid);
         return true;
     }

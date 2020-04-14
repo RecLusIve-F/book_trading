@@ -17,9 +17,9 @@ public interface BookService {
     List<Book> selBookByName(String bookName);//按书名检索,模糊匹配
     List<Book> selBookByCategory(String Category);//按目录检索
 
-    boolean isNew(Book book);//是否新书
-    boolean isPromo(Book book );//是否特价
-    boolean isSpecial(Book book);//是否畅销
+    boolean isNew(int bid);//是否新书
+    boolean isPromo(int bid);//是否特价
+    boolean isSpecial(int bid);//是否畅销
 
 
 }

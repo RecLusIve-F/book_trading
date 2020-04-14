@@ -19,7 +19,6 @@ public class Orders {
 	
 	public void setOrderTime(Date orderTime) {
         this.orderTime =  orderTime;
-        
     }
 	
 	public void setTotal(double total) {

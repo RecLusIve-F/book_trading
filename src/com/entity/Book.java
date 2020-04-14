@@ -15,6 +15,7 @@ public class Book {
     private Date createTime;
     private int uid;
 
+
     public int getUid() {
         return uid;
     }

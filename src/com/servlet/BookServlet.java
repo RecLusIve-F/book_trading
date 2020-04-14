@@ -1,9 +1,13 @@
 package com.servlet;
 
 import com.entity.Book;
+import com.entity.Category;
 import com.google.gson.Gson;
 import com.service.BookService;
+import com.service.CategoryService;
 import com.service.impl.BookServiceImpl;
+import com.service.impl.CategoryServiceImpl;
+import com.servlet.Info.BookInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 获取图书以及分类信息
  * @author dwaneZhou
  * @create --\
  */
@@ -22,7 +27,7 @@ public class BookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        doPost(req, resp);
 
     }
 
@@ -34,30 +39,30 @@ public class BookServlet extends HttpServlet {
         // 设置响应的编码格式
         resp.setContentType("application/json; charset=utf-8");
 
-        List<Book> books = bookService.selAllBooks();
         Gson gson = new Gson();
-        BookInfo bookInfo = new BookInfo();
+
+        CategoryService categoryService = new CategoryServiceImpl();
+
+        boolean isNew;
+        boolean isPromo;
+        boolean isSpecial;
+
+        List<Book> books = bookService.selAllBooks();//全部图书
+        List<Category> categories = categoryService.selCategory();//分类信息
+
+        BookInfo bookInfo;
         List<BookInfo> bookInfos = new ArrayList<>();
 
         for (int i =0;i<books.size();i++){
-            bookInfo.setBid(books.get(i).getBid());
-            bookInfo.setBname(books.get(i).getBname());
-            bookInfo.setAuthor(books.get(i).getAuthor());
-            bookInfo.setPrice(books.get(i).getPrice());
-            bookInfo.setPagenum(books.get(i).getPagenum());
-            bookInfo.setCid(books.get(i).getCid());
-            bookInfo.setSummary(books.get(i).getSummary());
-            bookInfo.setPicture(books.get(i).getPicture());
-            bookInfo.setCreateTime(books.get(i).getCreateTime());
-            bookInfo.setUid(books.get(i).getUid());
+            isNew = bookService.isNew(books.get(i).getBid());
+            isPromo = bookService.isPromo(books.get(i).getBid());
+            isSpecial = bookService.isSpecial(books.get(i).getBid());
+            bookInfo = new BookInfo(books.get(i),isNew,isPromo,isSpecial);
 
-            bookInfo.setPromo(bookService.isPromo(books.get(i).getBid()));
-            bookInfo.setSpecial(bookService.isSpecial(books.get(i).getBid()));
-            bookInfo.setNew(bookService.isNew(books.get(i).getBid()));
             bookInfos.add(bookInfo);
         }
 
-        String result = gson.toJson(new ResponseInfo(100, bookInfos));
+        String result = gson.toJson(new ResponseInfo(10, bookInfos,categories));
         resp.getWriter().write(result);
 
     }

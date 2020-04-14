@@ -18,6 +18,7 @@ public class CartServiceImpl implements CartService {
 
     /**
      * 插入购物项
+     *
      * @param uid
      * @param bid
      * @return
@@ -39,7 +40,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public boolean delCart(int uid, int bid) {
-        cartDao.delete(bid,uid);
+        cartDao.delete(bid, uid);
         return true;
     }
 
@@ -47,23 +48,30 @@ public class CartServiceImpl implements CartService {
      * 更新购物项
      * @param uid
      * @param bid
-     * @param quantity
+     * @param quantity 数量，为0即删除
      * @return
      */
-
     @Override
     public boolean updateCart(int uid, int bid, int quantity) {
-        List<Book> books = bookDao.findBook(bid);
-        Book book = books.get(0);
-        double price = book.getPrice();
-        double total =price*quantity;//单项总价格
-        cartDao.update(quantity,total,bid,uid);
-        return true;
+        if (quantity >= 0) {
+            //数量为0即删除当前购物项
+            if (quantity == 0) {
+                this.delCart(uid,bid);
+                return true;
+            }
+            List<Book> books = bookDao.findBook(bid);
+            Book book = books.get(0);
+            double price = book.getPrice();
+            double total = price * quantity;//单项总价格
+            cartDao.update(quantity, total, bid, uid);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public List<Cart> selCart(int uid) {
-        List<Cart> carts =  cartDao.findAll(uid);
+        List<Cart> carts = cartDao.findAll(uid);
         return carts;
     }
 

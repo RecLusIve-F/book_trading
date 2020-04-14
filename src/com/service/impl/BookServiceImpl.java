@@ -70,7 +70,7 @@ public class BookServiceImpl implements BookService {
      * @return
      */
     @Override
-    public boolean isNew(Book book) {
+    public boolean isNew(int bid) {
         /*
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//格式化
         try {
@@ -104,13 +104,12 @@ public class BookServiceImpl implements BookService {
 
     /**
      * 是否特价
-     * @param book
+     * @param bid
      * @return
      */
     @Override
-    public boolean isPromo(Book book) {
+    public boolean isPromo(int bid) {
         //return false;
-
         boolean flag;
         Random random = new Random();
         //随机10本书
@@ -129,7 +128,7 @@ public class BookServiceImpl implements BookService {
      * @return
      */
     @Override
-    public boolean isSpecial(Book book) {
+    public boolean isSpecial(int bid) {
         /*
         OrderitemDao orderitemDao = new OrderitemDao();
         List<Orderitem> orderitems = orderitemDao.findAll(book.getBid());

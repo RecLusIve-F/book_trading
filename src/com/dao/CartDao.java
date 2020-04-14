@@ -46,23 +46,36 @@ public class CartDao extends BaseDao {
         return search(sql, uid);
     }
 
+    //查询某个用户购物车中某个订单
+    public List<Cart> findOne(int uid, int bid) {
+        String sql = "select * from cart where uid=? and bid=?";
+        return search(sql, uid, bid);
+    }
+
     //插入
     public int insert(Cart t) {
-        String str = "insert into cart (bname,quantity,price,total,picture,uid,bid) VALUES(?,?,?,?,?,?,?)";
-        return executeUpdate(str, new Object[]{t.getBname(), t.getQuantity(), t.getPrice(), t.getTotal(), t.getPicture(), t.getUid(), t.getBid()});
+        String str = "insert into cart (bname,price,total,picture,uid,bid) VALUES(?,?,?,?,?,?)";
+        return executeUpdate(str, new Object[]{t.getBname(), t.getPrice(), t.getTotal(), t.getPicture(), t.getUid(), t.getBid()});
     }
 
     //更新
     public int update(int quantity, double total, int bid, int uid) {
         String sql = "update cart set `quantity`=?,`total`=? where bid = ? and uid = ?";
-        return executeUpdate(sql, new Object[]{quantity, total, bid, uid,});
+        return executeUpdate(sql, new Object[]{quantity, total, bid, uid});
     }
-
 
     //删除具体购物项
     public int delete(int bid, int uid) {
-        String sql = "delete * from cart where bid = ? and uid = ?";
+        String sql = "delete from cart where bid = ? and uid = ?";
         return executeUpdate(sql, new Object[]{bid, uid});
     }
 
+    //根据bid uid返回cartid
+    public List<Cart> findCartid(int uid, int bid) {
+        String sql = "select  cartid  from cart where uid=? and bid=?";
+        return search(sql, uid, bid);
+    }
 }
+
+
+
