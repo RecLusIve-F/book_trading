@@ -52,7 +52,6 @@ public class OrderItemServiceImpl implements OrderItemService {
         }
         return true;
     }
-
     @Override
     public List<Orderitem> selOrderItem(int oid) {
         List<Orderitem> orderitems =orderitemDao.findOrderItem(oid);

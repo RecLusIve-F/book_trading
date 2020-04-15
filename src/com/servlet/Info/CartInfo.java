@@ -7,7 +7,8 @@ import com.entity.Cart;
  * @author dwaneZhou
  * @create --\
  */
-public class CartInfo extends Cart {
+public class CartInfo {
+
     private Cart cart;
     private boolean isPromo;
 

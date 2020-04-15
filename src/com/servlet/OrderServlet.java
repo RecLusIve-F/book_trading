@@ -1,5 +1,6 @@
 package com.servlet;
 
+import com.entity.Orders;
 import com.google.gson.Gson;
 import com.service.OrderService;
 import com.service.impl.OrderServiceImpl;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 订单操作
@@ -42,11 +44,16 @@ public class OrderServlet extends HttpServlet {
         if (req.getParameter("uid")!=null&&!req.getParameter("uid").equals("")){
             uid = Integer.parseInt(req.getParameter("uid"));
         }
+
         if (req.getParameter("total")!=null&&!req.getParameter("total").equals("")){
-            total = Double.parseDouble(req.getParameter("uid"));
+            total = Double.parseDouble(req.getParameter("total"));
         }
+
+        System.out.println(total);
+
         if (orderService.addOrder(uid,address,total,bid)){
-            String result = gson.toJson(new ResponseInfo(40,"成功生成订单"));
+            List<Orders> orders =  orderService.selOrderInfo(uid);
+            String result = gson.toJson(new ResponseInfo(40,"成功生成订单",orders));
             resp.getWriter().write(result);
         }
 

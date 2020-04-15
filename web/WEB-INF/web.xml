@@ -31,7 +31,15 @@
         <servlet-name>orderItemServlet</servlet-name>
         <servlet-class>com.servlet.OrderItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>com.servlet.UserServlet</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>userServlet</servlet-name>
+        <url-pattern>/userServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>bookServlet</servlet-name>
         <url-pattern>/bookServlet</url-pattern>

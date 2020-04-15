@@ -24,7 +24,7 @@ public class CartServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json; charset=utf-8");
@@ -35,21 +35,27 @@ public class CartServlet extends HttpServlet {
         int quantity = 1;//默认插入图书数量为1本
         int uid = 0;//用户id
         int bid = 0;//图书id
-        String isAdd = req.getParameter("isAdd");//是否插入
+
+        String code = req.getParameter("code");//是否插入，1为插入，0为更新
 
         String result;
         //整型转换
         if (req.getParameter("uid")!=null&&!req.getParameter("uid").equals("")){
             uid = Integer.parseInt(req.getParameter("uid"));
+
         }
         if (req.getParameter("bid")!=null&&!req.getParameter("bid").equals("")){
             bid = Integer.parseInt(req.getParameter("bid"));
         }
         if (req.getParameter("quantity")!=null&&!req.getParameter("quantity").equals("")){
-            bid = Integer.parseInt(req.getParameter("quantity"));
+            quantity = Integer.parseInt(req.getParameter("quantity"));
         }
+
+        System.out.println(uid);
+        System.out.println(bid);
+
         //插入购物项
-        if (isAdd.equals("true")){
+        if (code.equals("1")){
             if (cartService.addCart(uid,bid)){
                 result = gson.toJson(new ResponseInfo(20,"插入成功"));
                 resp.getWriter().write(result);
@@ -61,13 +67,19 @@ public class CartServlet extends HttpServlet {
             }
         }
         //更新购物项
-        if (cartService.updateCart(uid,bid,quantity)){
-            result = gson.toJson(new ResponseInfo(22,"更新成功"));
-            resp.getWriter().write(result);
-        }else {
-            result = gson.toJson(new ResponseInfo(23,"更新失败"));
-            resp.getWriter().write(result);
+        if (code.equals("0")){
+            if (cartService.updateCart(uid,bid,quantity)){
+                result = gson.toJson(new ResponseInfo(22,"更新成功"));
+                resp.getWriter().write(result);
+            }else {
+                result = gson.toJson(new ResponseInfo(23,"更新失败"));
+                resp.getWriter().write(result);
+            }
         }
+    }
 
+    public static void main(String[] args) {
+        CartService cartService = new CartServiceImpl();
+        cartService.addCart(5,23);
     }
 }

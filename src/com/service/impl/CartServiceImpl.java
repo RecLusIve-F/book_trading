@@ -34,7 +34,17 @@ public class CartServiceImpl implements CartService {
         cart.setPicture(book.getPicture());
         cart.setUid(uid);
         //插入
-        cartDao.insert(cart);
+        if (cartDao.insert(cart)!=0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delCart(int uid, int[] bid) {
+        for (int x:bid){
+            cartDao.delete(x, uid);
+        }
         return true;
     }
 
@@ -78,7 +88,9 @@ public class CartServiceImpl implements CartService {
     public static void main(String[] args) {
         CartService cartService = new CartServiceImpl();
         //插入
-        //cartService.addCart(4,11);
+        cartService.addCart(4,12);
+        cartService.addCart(4,13);
+        cartService.addCart(4,19);
         //cartService.updateCart(4,11,2);
         /*
         List<Cart> carts = cartService.selCart(4);

@@ -1,13 +1,16 @@
 package com.service.impl;
 
 import com.dao.OrdersDao;
+import com.dao.UserDao;
 import com.entity.Cart;
 import com.entity.Orders;
 import com.entity.User;
 import com.service.CartService;
 import com.service.OrderItemService;
 import com.service.OrderService;
+import com.service.UserService;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,11 +22,11 @@ public class OrderServiceImpl implements OrderService {
     OrderItemService orderItemService = new OrderItemServiceImpl();
     OrdersDao ordersDao = new OrdersDao();
     CartService cartService = new CartServiceImpl();
+    UserDao userDao = new UserDao();
 
     /**
      * 插入订单
      * 暂未实现部分购物项生成订单
-     * @param uid
      * @param address 收件地址，默认用户信息填的地址
      * @param total 订单总价
      * @param bid 订单全部item id构成的数组
@@ -34,9 +37,9 @@ public class OrderServiceImpl implements OrderService {
         int[] result;
         int oid;//订单id
         int status;//插入状态
-        User user = new User();
+        User user = userDao.findUser(uid).get(0);
         //默认为用户信息里保存的地址
-        if (address == null){
+        if (address == null||address.equals("")||address.equals("null")){
             address=user.getAddress();
         }
         //插入订单
@@ -54,7 +57,11 @@ public class OrderServiceImpl implements OrderService {
             allBid[i]=carts.get(i).getBid();
         }
         bid = allBid;
+
+
         orderItemService.addItem(bid,oid,uid);
+        //清空购物车
+        cartService.delCart(uid,bid);
         return true;
     }
 
@@ -94,21 +101,36 @@ public class OrderServiceImpl implements OrderService {
         //插入订单
 /*
         int[] bid = {7,12};
-        orderService.addOrder(5,"address2",120,bid);
- */
+        orderService.addOrder(6,null,120,bid);
 
+
+ */
+        //删除订单
+        //orderService.delOrder(4,20);
          //修改订单状态
         //orderService.updateOrderStatus(14);
         //查询订单
-/*
-        List<Orders> orders = orderService.selOrderInfo(4);
+
+        List<Orders> orders = orderService.selOrderInfo(6);
         for (int i = 0;i<orders.size();i++){
             int oid = orders.get(i).getOid();
+            Date date = orders.get(i).getOrderTime();
+            double total = orders.get(i).getTotal();
+            String address = orders.get(i).getAddress();
+            int uid = orders.get(i).getUid();
+            int status = orders.get(i).getStatus();
             System.out.println(oid);
+            System.out.println(date);
+            System.out.println(total);
+            System.out.println(address);
+            System.out.println(uid);
+            System.out.println(status);
+
         }
 
 
- */
+
+
 
 
         //删除订单

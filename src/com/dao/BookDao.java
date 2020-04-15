@@ -40,7 +40,7 @@ public class BookDao extends BaseDao{
 			}
 			return list;
 		}
-		
+
 		//查询书本
 		public List<Book> findAll(){
 			String sql="select * from book";
@@ -64,17 +64,16 @@ public class BookDao extends BaseDao{
 			String sql="delete from book where bid = ? and uid = ?";
 			return executeUpdate(sql, new Object[]{bid,uid});
 		}
-		
-		
+
 		//搜索书籍
 		public List<Book> findOne(String s){		
 			String sql=" select * from book where bname like ? ";
 			return search(sql,s+"%");
 		}
-		
+
 		//根据书的编码返回书本
 		public List<Book> findBook(int bid){
-			String sql="select * from book where bid = ? ";
+			String sql="select * from book where bid = ?";
 			return search(sql,bid);
 		}
 		
@@ -85,10 +84,11 @@ public class BookDao extends BaseDao{
 		}
 
 		//返回用户发布所有图书
-		public List<Book> findBookbyUser(String username) {
-			String sql=" select * from book where username = ? )";
-			return search(sql,username);
+		public List<Book> findBookbyUser(int uid) {
+			String sql=" select * from book where uid = ? ";
+			return search(sql,uid);
 		}
+
 }
 		
 		

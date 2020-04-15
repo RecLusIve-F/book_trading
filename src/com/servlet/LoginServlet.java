@@ -1,6 +1,7 @@
 
 package com.servlet;
 
+import javax.imageio.stream.ImageInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dao.UserDao;
 import com.entity.Book;
 import com.entity.Cart;
 import com.entity.Orders;
@@ -21,6 +23,7 @@ import com.service.impl.BookServiceImpl;
 import com.service.impl.CartServiceImpl;
 import com.service.impl.OrderServiceImpl;
 import com.service.impl.UserServiceImpl;
+import com.servlet.Info.BookInfo;
 import com.servlet.Info.CartInfo;
 import com.servlet.Info.ResponseInfo;
 import com.servlet.Info.UserInfo;
@@ -57,6 +60,9 @@ public class LoginServlet extends HttpServlet {
         List<CartInfo> cartInfos = new ArrayList<>();
         BookService bookService = new BookServiceImpl();
 
+        BookInfo bookInfo;
+        List<BookInfo> bookInfos = new ArrayList<>();
+
         CartService cartService = new CartServiceImpl();
         OrderService orderService = new OrderServiceImpl();
 
@@ -69,19 +75,25 @@ public class LoginServlet extends HttpServlet {
             userInfo.setTelephone(user.getTelephone());
             userInfo.setAddress(user.getAddress());
             //用户发布图书信息
-            List<Book> books = bookService.selBookByUsername(username);
+            List<Book> books = bookService.selBookByUser(username);
+
+            for (int i =0;i<books.size();i++){
+                bookInfo = new BookInfo(books.get(i));
+                bookInfos.add(bookInfo);
+            }
+
             //用户购物车信息
             List<Cart> carts = cartService.selCart(user.getUid());
-            for (int i = 0; i < carts.size(); i++) {
 
+            for (int i = 0; i < carts.size(); i++) {
                 boolean isPromo =bookService.isPromo(carts.get(i).getBid());
                 cartInfo = new CartInfo(carts.get(i),isPromo);
                 cartInfos.add(cartInfo);
             }
+
             //用户订单信息
             List<Orders> orders = orderService.selOrderInfo(user.getUid());
-
-            String result = gson.toJson(new ResponseInfo(1, "登录成功", userInfo, cartInfos, orders,books));
+            String result = gson.toJson(new ResponseInfo(1, "登录成功", userInfo, cartInfos, orders,bookInfos));
             resp.getWriter().write(result);
         } else {
             String result = gson.toJson(new ResponseInfo(0, "用户名或密码错误"));
@@ -89,5 +101,21 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
+    public static void main(String[] args) {
+UserService userService = new UserServiceImpl();
+        User user = userService.selUserByName("john");
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUsername("john");
+        userInfo.setUid(user.getUid());
+        userInfo.setTelephone(user.getTelephone());
+        userInfo.setAddress(user.getAddress());
+        System.out.println(userInfo.getAddress());
+
+
+
+
+
+
+    }
 }
 

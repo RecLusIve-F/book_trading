@@ -35,15 +35,19 @@ public class UserServlet extends HttpServlet {
         UserService userService = new UserServiceImpl();
 
         String username = req.getParameter("username");
-        String telephone = req.getParameter("telephone");
         String address = req.getParameter("address");
-        int uid = 0;
+        String telephone = req.getParameter("telephone");
 
+        String code = req.getParameter("code");//特判 1 2 3
+        //System.out.println(address);
+
+        int uid = 0;
         //转换
         if (req.getParameter("uid")!=null&&!req.getParameter("uid").equals("")){
             uid = Integer.parseInt(req.getParameter("uid"));
         }
-        String flag = userService.updateUserInfo(username,telephone,address,uid);
+
+        String flag = userService.updateUserInfo(username,telephone,address,uid,code);
         if(flag.equals("success")){
             result = gson.toJson(new ResponseInfo(1,"修改成功"));
         }else {
@@ -51,6 +55,5 @@ public class UserServlet extends HttpServlet {
         }
 
         resp.getWriter().write(result);
-
     }
 }

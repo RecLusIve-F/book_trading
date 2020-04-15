@@ -70,6 +70,7 @@ public class CartDao extends BaseDao {
         return executeUpdate(sql, new Object[]{bid, uid});
     }
 
+
     //根据bid uid返回cartid
     public List<Cart> findCartid(int uid, int bid) {
         String sql = "select  cartid  from cart where uid=? and bid=?";

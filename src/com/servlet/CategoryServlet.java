@@ -54,6 +54,7 @@ public class CategoryServlet extends HttpServlet {
             bookInfo = new BookInfo(books.get(i),isNew,isPromo,isSpecial);
 
             categoryBookInfos.add(bookInfo);
+
         }
 
         String result = gson.toJson(new ResponseInfo(30,categoryBookInfos));

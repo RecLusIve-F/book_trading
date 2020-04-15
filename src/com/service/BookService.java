@@ -14,7 +14,7 @@ public interface BookService {
     boolean addBook(Book book);//发布书本
     boolean delBook(int bid,int uid);//用户删除书本
     List<Book> selAllBooks();//查找所有图书
-    List<Book> selBookByUsername(String username);//查找用户发布的图书信息
+    List<Book> selBookByUser(String username);//查找用户发布的图书信息
     List<Book> selBookByName(String bookName);//按书名检索,模糊匹配
     List<Book> selBookByCategory(String Category);//按目录检索
 

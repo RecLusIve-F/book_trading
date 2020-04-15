@@ -16,7 +16,7 @@ public class ResponseInfo {
     private String responseMsg;
     private List<Book> books;
     private List<BookInfo> bookInfos;
-    private UserInfo userInfos;
+    private UserInfo userInfo;
     private List<CartInfo> cartInfos;
     private List<Orders> orders;
     private List<Category> categoryInfos;
@@ -24,13 +24,13 @@ public class ResponseInfo {
 
 
     //Login_succeed
-    public ResponseInfo(int status, String responseMsg, UserInfo userInfos, List<CartInfo> cartInfos, List<Orders> orders,List<Book> books) {
+    public ResponseInfo(int status, String responseMsg, UserInfo userInfo, List<CartInfo> cartInfos, List<Orders> orders,List<BookInfo> bookInfos) {
         this.status = status;
         this.responseMsg = responseMsg;
-        this.userInfos = userInfos;
+        this.userInfo = userInfo;
         this.cartInfos = cartInfos;
         this.orders = orders;
-        this.books = books;
+        this.bookInfos = bookInfos;
     }
 
     //Login_failure
@@ -38,7 +38,12 @@ public class ResponseInfo {
         this.status = status;
         this.responseMsg = responseMsg;
     }
-
+    //用户订单
+    public ResponseInfo(int status, String responseMsg,List<Orders> orders) {
+        this.status = status;
+        this.responseMsg = responseMsg;
+        this.orders = orders;
+    }
     //获取分类图书信息
     public ResponseInfo(int status, List<BookInfo> bookInfos) {
         this.status = status;
@@ -65,6 +70,13 @@ public class ResponseInfo {
 
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 
     public void setOrderitems(List<Orderitem> orderitems) {
         this.orderitems = orderitems;

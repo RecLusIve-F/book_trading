@@ -1,6 +1,8 @@
 package com.service.impl;
 
 import com.dao.BookDao;
+import com.dao.UserDao;
+import com.entity.User;
 import com.service.BookService;
 import com.entity.Book;
 
@@ -18,6 +20,7 @@ public class BookServiceImpl implements BookService {
     int k = 0;
     BookDao bookDao = new BookDao();
     List<Book> books = new ArrayList<>();
+    UserDao userDao = new UserDao();
 
     @Override
     public boolean addBook(Book book) {
@@ -38,12 +41,16 @@ public class BookServiceImpl implements BookService {
         books = bookDao.findAll();
         return books;
     }
+
     //查询某个用户的所有图书
+
     @Override
-    public List<Book> selBookByUsername(String username) {
-        books = bookDao.findBookbyUser(username);
+    public List<Book> selBookByUser(String username) {
+        User user = userDao.findUser(username).get(0);
+        books = bookDao.findBookbyUser(user.getUid());
         return books;
     }
+
     //按类别检索
     @Override
     public List<Book> selBookByCategory(String category) {
@@ -66,7 +73,6 @@ public class BookServiceImpl implements BookService {
     /**
      * 系统时间与书本记录插入时间做对比，小于4天则是新书
      *
-     * @param book
      * @return
      */
     @Override
@@ -93,8 +99,8 @@ public class BookServiceImpl implements BookService {
          */
         boolean flag;
         Random random = new Random();
-        //随机10本书
-        while (i<10){
+        //随机5本书
+        while (i<5){
             flag = random.nextBoolean();
             i++;
             return flag;
@@ -112,8 +118,8 @@ public class BookServiceImpl implements BookService {
         //return false;
         boolean flag;
         Random random = new Random();
-        //随机10本书
-        while (k<10){
+        //随机5本书
+        while (k<5){
             flag = random.nextBoolean();
             k++;
             return flag;
@@ -124,7 +130,6 @@ public class BookServiceImpl implements BookService {
     /**
      * 是否畅销
      * 3个用户及以上购买为畅销
-     * @param book
      * @return
      */
     @Override
@@ -139,8 +144,8 @@ public class BookServiceImpl implements BookService {
          */
         boolean flag;
         Random random = new Random();
-        //随机10本书
-        while (j<10){
+        //随机5本书
+        while (j<5){
             flag = random.nextBoolean();
             j++;
             return flag;
@@ -148,8 +153,10 @@ public class BookServiceImpl implements BookService {
         return false;
     }
 
-    public static void main(String[] args) {
-        //BookService bookService = new BookServiceImpl();
+
+
+    //public static void main(String[] args) {
+       // BookService bookService = new BookServiceImpl();
         /*
         插入
         Book book = new Book();
@@ -170,21 +177,15 @@ public class BookServiceImpl implements BookService {
         //模糊匹配检索
         //books = bookService.selBookByName("白");
         //分类检索
-        /*
-        books = bookService.selBookByCategory("社科");
 
+        //books = bookService.selBookByCategory("科幻");
+/*
         for (int i=0;i<books.size();i++){
-            System.out.println(books.get(i).getBname());
+            System.out.println(books.get(i).getBid());
         }
 
-         */
 
-
-
-
-
-
+ */
 
         //bookService.deleteBook()
     }
-}
