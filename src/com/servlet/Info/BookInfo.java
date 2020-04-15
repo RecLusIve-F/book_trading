@@ -21,4 +21,36 @@ public class BookInfo {
     public BookInfo(Book book) {
         this.book = book;
     }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean aNew) {
+        isNew = aNew;
+    }
+
+    public boolean isPromo() {
+        return isPromo;
+    }
+
+    public void setPromo(boolean promo) {
+        isPromo = promo;
+    }
+
+    public boolean isSpecial() {
+        return isSpecial;
+    }
+
+    public void setSpecial(boolean special) {
+        isSpecial = special;
+    }
 }

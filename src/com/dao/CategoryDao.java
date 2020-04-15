@@ -54,4 +54,5 @@ public class CategoryDao extends BaseDao{
 		String sql = "select * from category";
 		return search(sql);
 		}
+
 }

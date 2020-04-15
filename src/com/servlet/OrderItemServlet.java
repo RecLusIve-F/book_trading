@@ -41,6 +41,8 @@ public class OrderItemServlet extends HttpServlet {
         if (req.getParameter("oid")!=null&&!req.getParameter("oid").equals("")){
             oid = Integer.parseInt(req.getParameter("oid"));
         }
+
+
         orderitems = orderItemService.selOrderItem(oid);
 
         ResponseInfo responseInfo = new ResponseInfo();

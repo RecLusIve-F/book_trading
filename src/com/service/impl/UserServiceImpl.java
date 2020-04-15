@@ -121,15 +121,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUserInfo(String username,String address, String telephone, int uid,String code) {
         List<User> users = userDao.findAll();
+        User currentUser = userDao.findUser(uid).get(0);//当前用户
         if (code.equals("1")){
             for (int i=0;i<users.size();i++){
-                if (users.get(i).getUsername().equals(username)){
+                String userNameInDb = users.get(i).getUsername();
+                String CurrentUserName = currentUser.getUsername();//当前用户名
+                if (userNameInDb.equals(username)||username.equals(CurrentUserName)){
                     return "更新失败，用户名已存在";//重名判断
                 }
             }
         }
+
         userDao.update(username,address,telephone,uid);
         return "success";
+
 
 
     }

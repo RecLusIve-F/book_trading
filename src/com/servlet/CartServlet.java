@@ -13,7 +13,8 @@ import java.io.IOException;
 
 /**
  * 购物车操作
- * 插入和修改(含删除)购物项
+ * 插入购物项,code=1
+ * 更新(含删除)购物项,code=0
  * @author dwaneZhou
  * @create --\
  */
@@ -51,9 +52,6 @@ public class CartServlet extends HttpServlet {
             quantity = Integer.parseInt(req.getParameter("quantity"));
         }
 
-        System.out.println(uid);
-        System.out.println(bid);
-
         //插入购物项
         if (code.equals("1")){
             if (cartService.addCart(uid,bid)){
@@ -77,9 +75,11 @@ public class CartServlet extends HttpServlet {
             }
         }
     }
-
+/*
     public static void main(String[] args) {
         CartService cartService = new CartServiceImpl();
         cartService.addCart(5,23);
     }
+
+ */
 }

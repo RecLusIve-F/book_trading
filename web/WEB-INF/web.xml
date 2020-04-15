@@ -35,6 +35,10 @@
         <servlet-name>userServlet</servlet-name>
         <servlet-class>com.servlet.UserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>searchServlet</servlet-name>
+        <servlet-class>com.servlet.SearchServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>userServlet</servlet-name>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>orderItemServlet</servlet-name>
         <url-pattern>/orderItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchServlet</servlet-name>
+        <url-pattern>/searchServlet</url-pattern>
     </servlet-mapping>
     <filter>
         <filter-name>cors</filter-name>

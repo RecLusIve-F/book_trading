@@ -1,6 +1,14 @@
 package com.entity;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Book {
 
@@ -113,7 +121,40 @@ public class Book {
         return summary;
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bid=" + bid +
+                ", bname='" + bname + '\'' +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                ", pagenum=" + pagenum +
+                ", cid=" + cid +
+                ", picture='" + picture + '\'' +
+                ", summary='" + summary + '\'' +
+                ", createTime=" + createTime +
+                ", uid=" + uid +
+                '}';
+    }
 
+    public static void main(String[] args) {
+        /*
+        Book book1 = new Book();
+        Book book2 = new Book();
+        book1.setBid(1);
+        book1.setBname("ss");
+        book1.setSummary("sum");
+        book2.setBid(2);
+        book2.setBname("tt");
+        book2.setSummary("ssssss");
+        Gson gson = new Gson();
+        List<Book> books = new ArrayList<>();
+        books.add(book1);
+        books.add(book2);
+
+         */
+
+    }
 }
 
 

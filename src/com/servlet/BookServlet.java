@@ -20,8 +20,9 @@ import java.util.List;
 
 /**
  * 表示层，负责与前端进行交互，如数据的交互和请求的响应
- * 获取图书以及分类信息
- * 发布图书
+ * 获取全部图书以及分类信息,code=0
+ * 发布图书，code=1
+ *
  * @author dwaneZhou
  * @create --\
  */
@@ -63,62 +64,65 @@ public class BookServlet extends HttpServlet {
         String author = req.getParameter("author");
         double price = 0;
         int pageNum = 0;
-        int cid = 0;
+        String cname = req.getParameter("cname");
         String summary = req.getParameter("summary");
-        String picture= req.getParameter("picture");
+        String picture = req.getParameter("picture");
         int uid = 0;
+        int cid = 0;
 
-        if (req.getParameter("bid")!=null&&!req.getParameter("bid").equals("")){
-            bid = Integer.parseInt(req.getParameter("bid"));
-        }
-
-        if (req.getParameter("price")!=null&&!req.getParameter("price").equals("")){
+        if (req.getParameter("price") != null && !req.getParameter("price").equals("")) {
             price = Double.parseDouble(req.getParameter("price"));
         }
-        if (req.getParameter("pageNum")!=null&&!req.getParameter("pageNum").equals("")){
+        if (req.getParameter("pageNum") != null && !req.getParameter("pageNum").equals("")) {
             pageNum = Integer.parseInt(req.getParameter("pageNum"));
         }
-        if (req.getParameter("cid")!=null&&!req.getParameter("cid").equals("")){
-            cid = Integer.parseInt(req.getParameter("cid"));
-        }
-        if (req.getParameter("uid")!=null&&!req.getParameter("uid").equals("")){
+        if (req.getParameter("uid") != null && !req.getParameter("uid").equals("")) {
             uid = Integer.parseInt(req.getParameter("uid"));
         }
 
-        book.setBid(bid);
-        book.setBname(bname);
-        book.setAuthor(author);
-        book.setPrice(price);
-        book.setPagenum(pageNum);
-        book.setCid(cid);
-        book.setSummary(summary);
-        book.setPicture(picture);
-        book.setUid(uid);
+        //发布图书
+        if (code.equals("1")) {
+            cid = categoryService.selCid(cname);//cid
+            book.setBname(bname);
+            book.setAuthor(author);
+            book.setPrice(price);
+            book.setPagenum(pageNum);
+            book.setCid(cid);
+            book.setSummary(summary);
+            book.setPicture(picture);
+            book.setUid(uid);
 
-        if (code.equals("1")){
-            ResponseInfo responseInfo = new ResponseInfo();
-            responseInfo.setStatus(10);
-            responseInfo.setBooks(books);
-            books = bookService.selBookByName(bname);
-            result = gson.toJson(responseInfo);
-            resp.getWriter().write(result);
-
-        }else {
-            for (int i =0;i<books.size();i++){
-                isNew = bookService.isNew(books.get(i).getBid());
-                isPromo = bookService.isPromo(books.get(i).getBid());
-                isSpecial = bookService.isSpecial(books.get(i).getBid());
-                bookInfo = new BookInfo(books.get(i),isNew,isPromo,isSpecial);
-                bookInfos.add(bookInfo);
+            int[] res = bookService.addBook(book);
+            int flag = res[0];//是否插入成功
+            //插入成功
+            if (flag==1){
+                bid = res[1];
+                Book currentBook = bookService.selBookById(bid);//当前图书
+                isNew = bookService.isNew(bid);
+                isPromo = bookService.isPromo(bid);
+                isSpecial = bookService.isSpecial(bid);
+                result = gson.toJson(new ResponseInfo(1, "插入成功",currentBook, isNew, isPromo, isSpecial));
+                resp.getWriter().write(result);
+            }else {
+                result = gson.toJson(new ResponseInfo(0, "插入失败"));
+                resp.getWriter().write(result);
             }
-            result = gson.toJson(new ResponseInfo(10, bookInfos,categories));
-            resp.getWriter().write(result);
         }
 
 
+        //查询全部图书信息
+        if (code.equals("0")) {
+            for (int i = 0; i < books.size(); i++) {
+                isNew = bookService.isNew(books.get(i).getBid());
+                isPromo = bookService.isPromo(books.get(i).getBid());
+                isSpecial = bookService.isSpecial(books.get(i).getBid());
+                bookInfo = new BookInfo(books.get(i), isNew, isPromo, isSpecial);
+                bookInfos.add(bookInfo);
+            }
 
-
-
+            result = gson.toJson(new ResponseInfo(10, bookInfos, categories));
+            resp.getWriter().write(result);
+        }
     }
 
 }

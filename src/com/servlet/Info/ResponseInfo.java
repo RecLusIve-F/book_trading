@@ -14,6 +14,7 @@ import java.util.List;
 public class ResponseInfo {
     private int status;
     private String responseMsg;
+    private Book book;
     private List<Book> books;
     private List<BookInfo> bookInfos;
     private UserInfo userInfo;
@@ -21,6 +22,9 @@ public class ResponseInfo {
     private List<Orders> orders;
     private List<Category> categoryInfos;
     private List<Orderitem> orderitems;
+    boolean isNew;
+    boolean isPromo;
+    boolean isSpecial;
 
 
     //Login_succeed
@@ -31,6 +35,14 @@ public class ResponseInfo {
         this.cartInfos = cartInfos;
         this.orders = orders;
         this.bookInfos = bookInfos;
+    }
+
+    public ResponseInfo(int status, String responseMsg, UserInfo userInfo, List<CartInfo> cartInfos,List<Orders> orders) {
+        this.status = status;
+        this.responseMsg = responseMsg;
+        this.userInfo = userInfo;
+        this.cartInfos = cartInfos;
+        this.orders = orders;
     }
 
     //Login_failure
@@ -44,6 +56,7 @@ public class ResponseInfo {
         this.responseMsg = responseMsg;
         this.orders = orders;
     }
+
     //获取分类图书信息
     public ResponseInfo(int status, List<BookInfo> bookInfos) {
         this.status = status;
@@ -57,15 +70,25 @@ public class ResponseInfo {
         this.categoryInfos = categoryInfos;
     }
 
-    /*
-    //订单详情
-    public ResponseInfo(int status, List<Object> orderitems) {
+    //发布图书
+    public ResponseInfo(int status, String responseMsg,Book book, boolean isNew, boolean isPromo, boolean isSpecial) {
         this.status = status;
-        this.orderitems = orderitems;
+        this.responseMsg = responseMsg;
+        this.book = book;
+        this.isNew = isNew;
+        this.isPromo = isPromo;
+        this.isSpecial = isSpecial;
     }
 
+    /*
+        //订单详情
+        public ResponseInfo(int status, List<Object> orderitems) {
+            this.status = status;
+            this.orderitems = orderitems;
+        }
 
-     */
+         */
+
     public ResponseInfo() {
 
     }

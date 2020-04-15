@@ -46,12 +46,17 @@ public class BookDao extends BaseDao{
 			String sql="select * from book";
 			return search(sql);
 		}
-		
-		//插入书本
-		public int insert(Book t){
-			String str="insert into book (bname,author,price,pagenum,cid,summary,picture,uid) VALUES(?,?,?,?,?,?,?,?)";
-			return executeUpdate(str, new Object[]{t.getName(),t.getAuthor(),t.getPrice(),t.getPagenum(),t.getCid(),t.getSummary(),t.getPicture(),t.getUid()});
-		}
+
+
+	public int[] insert(Book t){
+		String str="insert into book (bname,author,price,pagenum,cid,summary,picture,uid) VALUES(?,?,?,?,?,?,?,?)";
+		String strQuery = "select last_insert_id()";
+		int[] result;
+		result = executeUpdate(str, new Object[]{t.getName(),t.getAuthor(),t.getPrice(),t.getPagenum(),t.getCid(),t.getSummary(),t.getPicture(),t.getUid()},strQuery);
+		return result;
+	}
+
+
 		
 		//更新书本
 		public int update(Book r){
@@ -68,7 +73,7 @@ public class BookDao extends BaseDao{
 		//搜索书籍
 		public List<Book> findOne(String s){		
 			String sql=" select * from book where bname like ? ";
-			return search(sql,s+"%");
+			return search(sql,"%"+s+"%");
 		}
 
 		//根据书的编码返回书本
@@ -78,16 +83,30 @@ public class BookDao extends BaseDao{
 		}
 		
 		//根据cname和cid返回书本内容
-		public List<Book> findBook(String cname) {
-			String sql=" select * from book where cid = ( select cid from category where cname = ? )";
-			return search(sql,cname);
+		public List<Book> findBookById(int cid) {
+			String sql=" select * from book where cid =?";
+			return search(sql,cid);
 		}
 
 		//返回用户发布所有图书
 		public List<Book> findBookbyUser(int uid) {
-			String sql=" select * from book where uid = ? ";
-			return search(sql,uid);
+			String sql = " select * from book where uid = ? ";
+			return search(sql, uid);
 		}
+
+
+
+
+
+/*
+	public static void main(String[] args) {
+		BookDao bookDao = new BookDao();
+		for (){
+			int bname;
+		}
+	}
+
+ */
 
 }
 		

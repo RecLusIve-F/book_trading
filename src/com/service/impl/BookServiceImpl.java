@@ -1,11 +1,16 @@
 package com.service.impl;
 
 import com.dao.BookDao;
+import com.dao.OrderitemDao;
 import com.dao.UserDao;
+import com.entity.Orderitem;
 import com.entity.User;
 import com.service.BookService;
 import com.entity.Book;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +27,33 @@ public class BookServiceImpl implements BookService {
     List<Book> books = new ArrayList<>();
     UserDao userDao = new UserDao();
 
+    /**
+     * 插入图书
+     * 返回数组[0]，插入状态,[1]插入记录的bid
+     * @param book
+     * @return
+     */
     @Override
-    public boolean addBook(Book book) {
-        bookDao.insert(book);
-        return true;
+    public int[] addBook(Book book) {
+        int[] message = new int[2];//返回数组
+        int[] result =bookDao.insert(book);
+        int status = result[0];//插入状态
+        int bid;//当前插入记录的bid
+        if (status!=0){
+            bid = result[1];
+            message[0] = status;
+            message[1] = bid;
+            return message;
+        }
+        message[0]=0;
+        return message;
+
+    }
+
+    @Override
+    public Book selBookById(int bid) {
+        Book book = bookDao.findBook(bid).get(0);
+        return book;
     }
 
     @Override
@@ -53,8 +81,8 @@ public class BookServiceImpl implements BookService {
 
     //按类别检索
     @Override
-    public List<Book> selBookByCategory(String category) {
-        books = bookDao.findBook(category);
+    public List<Book> selBookByCategory(int cid) {
+        books = bookDao.findBookById(cid);
         return books;
     }
 
@@ -70,16 +98,18 @@ public class BookServiceImpl implements BookService {
         return books;
     }
 
+
+
     /**
-     * 系统时间与书本记录插入时间做对比，小于4天则是新书
-     *
+     * 系统时间与书本记录插入时间做对比，小于3天则是新书
      * @return
      */
     @Override
     public boolean isNew(int bid) {
-        /*
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//格式化
         try {
+            Book book = bookDao.findBook(bid).get(0);
             //格式化日期
             String date = df.format(new Date());//当前系统时间
             String date2 = df.format(book.getCreateTime());
@@ -88,7 +118,7 @@ public class BookServiceImpl implements BookService {
             Date oldDate = df.parse(date2);
             //运算时间差(天)
             long day = (currentDate.getTime() - oldDate.getTime()) / (24 * 60 * 60 * 1000);
-            if (day < 4) {
+            if (day < 3) {
                 return true;
             }
         } catch (ParseException e) {
@@ -96,7 +126,7 @@ public class BookServiceImpl implements BookService {
         }
         return false;
 
-         */
+        /*
         boolean flag;
         Random random = new Random();
         //随机5本书
@@ -105,7 +135,9 @@ public class BookServiceImpl implements BookService {
             i++;
             return flag;
         }
-        return false;
+
+         */
+
     }
 
     /**
@@ -115,6 +147,7 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public boolean isPromo(int bid) {
+        /*
         //return false;
         boolean flag;
         Random random = new Random();
@@ -124,35 +157,29 @@ public class BookServiceImpl implements BookService {
             k++;
             return flag;
         }
+
+         */
+        if (bid==120||bid==121||bid==122){
+            return true;
+        }
         return false;
     }
 
     /**
      * 是否畅销
-     * 3个用户及以上购买为畅销
+     * 销量大于等于2
      * @return
      */
     @Override
     public boolean isSpecial(int bid) {
-        /*
+
         OrderitemDao orderitemDao = new OrderitemDao();
-        List<Orderitem> orderitems = orderitemDao.findAll(book.getBid());
-        if (orderitems.size()>=3) {
+        List<Orderitem> orderitems = orderitemDao.findAll(bid);
+        if (orderitems.size()>=2) {
             return true;
         }
         return false;
-         */
-        boolean flag;
-        Random random = new Random();
-        //随机5本书
-        while (j<5){
-            flag = random.nextBoolean();
-            j++;
-            return flag;
-        }
-        return false;
     }
-
 
 
     //public static void main(String[] args) {

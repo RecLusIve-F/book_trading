@@ -11,9 +11,17 @@ public class Orders {
 	private int status;
 	private String address;
 	private int uid;
-	
-	
-	public void setOid(int oid) {
+
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setOid(int oid) {
         this.oid =  oid;
     }
 	
@@ -24,10 +32,7 @@ public class Orders {
 	public void setTotal(double total) {
         this.total =  total;
     }
-	
-	public void setStatus(int oid) {
-        this.oid =  oid;
-    }
+
 	
 	public void setAddress(String address) {
         this.address =  address;
@@ -49,10 +54,6 @@ public class Orders {
         return total;
     }
 
-	public int getStatus() {
-        return status;
-    }
-	
 	public String getAddress() {
         return address;
     }

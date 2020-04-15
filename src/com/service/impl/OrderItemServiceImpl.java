@@ -57,6 +57,4 @@ public class OrderItemServiceImpl implements OrderItemService {
         List<Orderitem> orderitems =orderitemDao.findOrderItem(oid);
         return orderitems;
     }
-
-
 }

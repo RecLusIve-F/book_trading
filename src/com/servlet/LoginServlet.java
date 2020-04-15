@@ -30,6 +30,7 @@ import com.servlet.Info.UserInfo;
 
 /**
  * 登录
+ * 返回用户购物车、订单、发布图书信息
  * @author dwaneZhou
  * @create --\
  */
@@ -60,8 +61,8 @@ public class LoginServlet extends HttpServlet {
         List<CartInfo> cartInfos = new ArrayList<>();
         BookService bookService = new BookServiceImpl();
 
-        BookInfo bookInfo;
-        List<BookInfo> bookInfos = new ArrayList<>();
+        BookInfo userBookInfo;
+        List<BookInfo> userBookInfos = new ArrayList<>();//用户发布图书信息
 
         CartService cartService = new CartServiceImpl();
         OrderService orderService = new OrderServiceImpl();
@@ -74,33 +75,38 @@ public class LoginServlet extends HttpServlet {
             userInfo.setUid(user.getUid());
             userInfo.setTelephone(user.getTelephone());
             userInfo.setAddress(user.getAddress());
+
+
             //用户发布图书信息
             List<Book> books = bookService.selBookByUser(username);
-
-            for (int i =0;i<books.size();i++){
-                bookInfo = new BookInfo(books.get(i));
-                bookInfos.add(bookInfo);
+            for (int i = 0; i < books.size(); i++) {
+                userBookInfo = new BookInfo(books.get(i));
+                userBookInfos.add(userBookInfo);
             }
+
+
 
             //用户购物车信息
             List<Cart> carts = cartService.selCart(user.getUid());
 
             for (int i = 0; i < carts.size(); i++) {
-                boolean isPromo =bookService.isPromo(carts.get(i).getBid());
-                cartInfo = new CartInfo(carts.get(i),isPromo);
+                boolean isPromo = bookService.isPromo(carts.get(i).getBid());
+                cartInfo = new CartInfo(carts.get(i), isPromo);
                 cartInfos.add(cartInfo);
             }
 
             //用户订单信息
             List<Orders> orders = orderService.selOrderInfo(user.getUid());
-            String result = gson.toJson(new ResponseInfo(1, "登录成功", userInfo, cartInfos, orders,bookInfos));
+            String result = gson.toJson(new ResponseInfo(1, "登录成功", userInfo, cartInfos, orders, userBookInfos));
+            //String result = gson.toJson(new ResponseInfo(1, "登录成功", userInfo, cartInfos, orders));
             resp.getWriter().write(result);
         } else {
             String result = gson.toJson(new ResponseInfo(0, "用户名或密码错误"));
             resp.getWriter().write(result);
         }
     }
-
+}
+/*
     public static void main(String[] args) {
 UserService userService = new UserServiceImpl();
         User user = userService.selUserByName("john");
@@ -112,10 +118,6 @@ UserService userService = new UserServiceImpl();
         System.out.println(userInfo.getAddress());
 
 
+ */
 
-
-
-
-    }
-}
 

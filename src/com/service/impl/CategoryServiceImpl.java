@@ -1,6 +1,8 @@
 package com.service.impl;
 
+import com.dao.BookDao;
 import com.dao.CategoryDao;
+import com.entity.Book;
 import com.entity.Category;
 import com.service.CategoryService;
 
@@ -32,6 +34,8 @@ public class CategoryServiceImpl implements CategoryService {
         return true;
     }
 
+
+
     @Override
     public List<Category> selCategory() {
         return categoryDao.findAll();
@@ -51,5 +55,17 @@ public class CategoryServiceImpl implements CategoryService {
             System.out.println(list.get(i).getCname());
         }
         }
+
+
  */
+    @Override
+    public int selCid(String cname) {
+        List<Category> categories = categoryDao.findAll();
+        for (Category x:categories){
+            if (x.getCname().equals(cname)){
+                return x.getCid();
+            }
+        }
+        return 0;
+    }
 }

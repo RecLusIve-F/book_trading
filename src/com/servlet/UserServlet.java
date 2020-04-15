@@ -13,6 +13,8 @@ import java.io.IOException;
 
 /**
  * 修改用户信息
+ * 修改用户名,code=1
+ *
  * @author dwaneZhou
  * @create --\
  */
@@ -22,7 +24,6 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -38,8 +39,7 @@ public class UserServlet extends HttpServlet {
         String address = req.getParameter("address");
         String telephone = req.getParameter("telephone");
 
-        String code = req.getParameter("code");//特判 1 2 3
-        //System.out.println(address);
+        String code = req.getParameter("code");//特判
 
         int uid = 0;
         //转换
@@ -47,7 +47,7 @@ public class UserServlet extends HttpServlet {
             uid = Integer.parseInt(req.getParameter("uid"));
         }
 
-        String flag = userService.updateUserInfo(username,telephone,address,uid,code);
+        String flag = userService.updateUserInfo(username,address,telephone,uid,code);
         if(flag.equals("success")){
             result = gson.toJson(new ResponseInfo(1,"修改成功"));
         }else {

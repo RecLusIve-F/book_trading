@@ -72,7 +72,7 @@ public class BaseDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int[] result = new int[2];
-        int status;//插入状态
+        //int status;//插入状态
         int id;//自增ID值
         try {
             ps = prepareStatement(conn, sql, ob);
@@ -81,7 +81,7 @@ public class BaseDao {
 			ps = prepareStatement(conn, sqlQuery,null);
 			rs = ps.executeQuery();
 			while (rs.next()){
-				id = rs.getInt(1);
+				id = rs.getInt(1);//返回当前自增id值
 				result[1] = id;
 			}
             return result;

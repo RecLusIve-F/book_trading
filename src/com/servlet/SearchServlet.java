@@ -40,19 +40,21 @@ public class SearchServlet extends HttpServlet {
         boolean isSpecial;
         BookService bookService = new BookServiceImpl();
         BookInfo bookInfo;
-
-        String bookName = req.getParameter("bname");//书名
-        List<Book> books = bookService.selBookByName(bookName);
+        List<Book> books;
         List<BookInfo> bookInfos = new ArrayList<>();
 
-        for (int i =0;i<books.size();i++){
+        String bookName = req.getParameter("bname");//书名
+
+        //模糊匹配查询
+        books = bookService.selBookByName(bookName);
+        for (int i = 0; i < books.size(); i++) {
             isNew = bookService.isNew(books.get(i).getBid());
             isPromo = bookService.isPromo(books.get(i).getBid());
             isSpecial = bookService.isSpecial(books.get(i).getBid());
-            bookInfo = new BookInfo(books.get(i),isNew,isPromo,isSpecial);
+            bookInfo = new BookInfo(books.get(i), isNew, isPromo, isSpecial);
             bookInfos.add(bookInfo);
         }
-        result = gson.toJson(new ResponseInfo(1,bookInfos));
+        result = gson.toJson(new ResponseInfo(1, bookInfos));
         resp.getWriter().write(result);
 
     }

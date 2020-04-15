@@ -14,8 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * 订单操作
- * 添加订单
+ * 订单添加、删除
  * @author dwaneZhou
  * @create --\
  */
@@ -49,13 +48,10 @@ public class OrderServlet extends HttpServlet {
             total = Double.parseDouble(req.getParameter("total"));
         }
 
-        System.out.println(total);
-
         if (orderService.addOrder(uid,address,total,bid)){
             List<Orders> orders =  orderService.selOrderInfo(uid);
             String result = gson.toJson(new ResponseInfo(40,"成功生成订单",orders));
             resp.getWriter().write(result);
         }
-
     }
 }
