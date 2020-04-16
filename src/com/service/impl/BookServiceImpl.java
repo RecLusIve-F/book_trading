@@ -182,8 +182,9 @@ public class BookServiceImpl implements BookService {
     }
 
 
+
     //public static void main(String[] args) {
-       // BookService bookService = new BookServiceImpl();
+       // BookService bookService = new BookServceImpl();
         /*
         插入
         Book book = new Book();
